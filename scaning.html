@@ -21,13 +21,18 @@
             </div>
 			<div class="apr-container">
 			<img src="img/apr.png" class="apr" onclick="window.open('scan-completed.html', '_self', 'location=yes');"/>
-			</div>		
+			</div>	
+			<div id="info"></div>
         </div>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+			dbWrapper.initialize();
             app.initialize();
+			app.scan();
         </script>
 		
     </body>

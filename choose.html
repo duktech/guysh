@@ -13,16 +13,28 @@
 		<div class="top-bar"><h1>CHOOSE CHECKLIST</h1></div>
         <div class="app">
            
-			<button class="choose-button" onclick="window.open('scan-patient.html', '_self', 'location=yes');">Surgery</button>
-			<button class="choose-button">Radiology</button>
-			<button class="choose-button">Endoscopy</button>
-			<button class="choose-button">WARD</button>
+			<button class="choose-button" onclick="app.createIntervention('1');">Surgery</button>
+			<button class="choose-button" onclick="app.createIntervention('2');">Radiology</button>
+			<button class="choose-button" onclick="app.createIntervention('3');">Endoscopy</button>
+			<button class="choose-button" onclick="app.createIntervention('4');">WARD</button>
 
         </div>
+		<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
+        <script type="text/javascript" src="js/db.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+			function getLastInterventionReturnFunction(transaction, result) {
+				if (result != null && result.rows != null) {
+					row = result.rows[0];
+					console.log(row.Id);
+				}
+			}
+		
+			dbWrapper.initialize();
+			dbWrapper.getLastIntervention(getLastInterventionReturnFunction);
+			
             app.initialize();
         </script>
 		

@@ -16,26 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+function addInterventionReturnFunction()
+{
+	window.open('scan-patient.html', '_self', 'location=yes');
+}
+ 
 var app = {
     // Application Constructor
     initialize: function() {
-				alert("Hello GUYS");
-				
-		alert("start creating the DB");
-			var myDB = window.sqlitePlugin.openDatabase({name: "mySQLite.db"});
-			
-			myDB.transaction(function(transaction) {
-transaction.executeSql('CREATE TABLE IF NOT EXISTS phonegap_pro (id integer primary key, title text, desc text)', [],
-function(tx, result) {
-alert("Table created successfully");
-},
-function(error) {
-alert("Error occurred while creating the table.");
-});
-});		
-				
         this.bindEvents();
-
     },
     // Bind Event Listeners
     //
@@ -43,8 +33,10 @@ alert("Error occurred while creating the table.");
     // `load`, `deviceready`, `offline`, and `online`.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-       // document.getElementById('scan').addEventListener('click', this.scan, false);
-       // document.getElementById('encode').addEventListener('click', this.encode, false);
+		if($('#scan').length)
+			document.getElementById('scan').addEventListener('click', this.scan, false);
+        if($('#encode').length)
+			document.getElementById('encode').addEventListener('click', this.encode, false);
     },
 
     // deviceready Event Handler
@@ -66,6 +58,11 @@ alert("Error occurred while creating the table.");
 
         console.log('Received Event: ' + id);
     },
+	
+	createIntervention: function(type){
+		dbWrapper.initialize();
+		dbWrapper.addIntervention(type, addInterventionReturnFunction);		
+	},
 
     scan: function() {
         console.log('scanning');
@@ -98,7 +95,7 @@ alert("Error occurred while creating the table.");
 
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-alert("GUYS seems to wrok");
+		alert("GUYS seems to wrok");
         scanner.encode(scanner.Encode.TEXT_TYPE, "marius rata : 5 sept 1975", function(success) {
             alert("encode success: " + success);
           }, function(fail) {
