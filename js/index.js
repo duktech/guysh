@@ -19,8 +19,23 @@
 var app = {
     // Application Constructor
     initialize: function() {
+				alert("Hello GUYS");
+				
+		alert("start creating the DB");
+			var myDB = window.sqlitePlugin.openDatabase({name: "mySQLite.db"});
+			
+			myDB.transaction(function(transaction) {
+transaction.executeSql('CREATE TABLE IF NOT EXISTS phonegap_pro (id integer primary key, title text, desc text)', [],
+function(tx, result) {
+alert("Table created successfully");
+},
+function(error) {
+alert("Error occurred while creating the table.");
+});
+});		
+				
         this.bindEvents();
-		alert("Hello GUYS");
+
     },
     // Bind Event Listeners
     //
@@ -28,8 +43,8 @@ var app = {
     // `load`, `deviceready`, `offline`, and `online`.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.getElementById('scan').addEventListener('click', this.scan, false);
-        document.getElementById('encode').addEventListener('click', this.encode, false);
+       // document.getElementById('scan').addEventListener('click', this.scan, false);
+       // document.getElementById('encode').addEventListener('click', this.encode, false);
     },
 
     // deviceready Event Handler
