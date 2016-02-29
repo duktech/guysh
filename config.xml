@@ -14,7 +14,7 @@
     </author>
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
-	<gap:plugin name="com.phonegap.plugins.cordova-plugin-sqlite"/>
+<plugin name="io.litehelpers.cordova.sqlite" spec="0.7.10" source="pgb" />
 
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="debug-server" required="true">
