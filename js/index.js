@@ -98,7 +98,8 @@ var app = {
         console.log('Received Event: ' + id);
     },
 	
-	getPatientDetails: function(type){		
+	getPatientDetails: function(type){	
+		dbWrapper.initialize();
 		dbWrapper.getPatientByInterventionId(interventionId, getPatientByInterventionIdReturnFunction);		
 	},
 	
@@ -133,6 +134,7 @@ var app = {
 			alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
 			if(res.length == 4) 
 			{
+				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
 			else{
