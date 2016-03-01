@@ -98,7 +98,6 @@ var app = {
 	
 	getPatientDetails: function(){	
 		dbWrapper.initialize();
-		//alert("lastIntervention - patdet: " + window.localStorage.getItem("lastIntervention"));
 		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
 			dbWrapper.getPatientByInterventionId(window.localStorage.getItem("lastIntervention"), getPatientByInterventionIdReturnFunction);		
 		else
@@ -117,40 +116,16 @@ var app = {
 
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-        scanner.scan( function (result) { 
-
-            alert("We got a barcode\n" + 
-            "Result: " + result.text + "\n" + 
-            "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  
-
-           /*console.log("Scanner result: \n" +
-                "text: " + result.text + "\n" +
-                "format: " + result.format + "\n" +
-                "cancelled: " + result.cancelled + "\n");*/
-            //document.getElementById("info").innerHTML = result.text;
-			
+        scanner.scan( function (result) { 	
 			var res = result.text.split("|");
-			//alert(res.length);
-			//alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
 			if(res.length == 4) 
 			{
-				alert("localstorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
-				//alert ("before save DB");
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");
 			}
-			
-            console.log(result);
-            /*
-            if (args.format == "QR_CODE") {
-                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-            }
-            */
-
         }, function (error) { 
             console.log("Scanning failed: ", error); 
         } );
@@ -158,7 +133,6 @@ var app = {
 
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-		alert("GUYS seems to wrok");
         scanner.encode(scanner.Encode.TEXT_TYPE, "marius rata : 5 sept 1975", function(success) {
             alert("encode success: " + success);
           }, function(fail) {
