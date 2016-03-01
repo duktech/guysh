@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var lastIntervention = null;
 
 function getAllInterventionsReturnFunction(transaction, result){
 	if (result != null && result.rows != null) {
@@ -29,7 +28,8 @@ function getAllInterventionsReturnFunction(transaction, result){
 
 function getLastInterventionReturnFunction(transaction, result){
 	if (result != null && result.rows != null && result.rows.length>0) {
-		lastIntervention = result.rows[0];		
+		window.localStorage.setItem("lastIntervention", result.rows.item(0).Id);
+		//lastIntervention = result.rows.item(0);		
 	}
 }
 
@@ -108,9 +108,9 @@ var app = {
 
     scan: function() {
         console.log('scanning');
-		alert(lastIntervention);
-		if(lastIntervention != null)
-			alert(lastIntervention.Id);
+		alert(window.localStorage.getItem("lastIntervention"));
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't denifed any intervention");
 		alert("before init");
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 		alert("after init");
@@ -130,7 +130,7 @@ var app = {
 			var res = result.text.split("|");
 			if(res.length == 4)
 			{
-				dbWrapper.addPatient(lastIntervention, res[0].trim(), res[1].trim, res[2].trim, res[3].trim(), addPatientReturnFunction);
+				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim, res[2].trim, res[3].trim(), addPatientReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");
