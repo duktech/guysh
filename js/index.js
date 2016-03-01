@@ -109,13 +109,15 @@ var app = {
         console.log('scanning');
 		console.log(lastIntervention);
 		console.log('lastINtevention: ' + lastIntervention.Id);
+		alert("before init");
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+		alert("after init");
         scanner.scan( function (result) { 
 
-            /*alert("We got a barcode\n" + 
+            alert("We got a barcode\n" + 
             "Result: " + result.text + "\n" + 
             "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  */
+            "Cancelled: " + result.cancelled);  
 
            /*console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +

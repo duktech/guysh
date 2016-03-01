@@ -74,6 +74,7 @@ var dbWrapper = {
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Intervention(Id INTEGER NOT NULL PRIMARY KEY, RegisterDate TEXT NOT NULL, Type TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Pacient(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, BirthDate TEXT NOT NULL, HospitalNr TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Team(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, Role TEXT NOT NULL)',[],this.ullHandler,this.errorHandler);
+
 		},this.errorHandler,this.successCallBack);
     },
 	
