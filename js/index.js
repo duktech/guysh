@@ -61,6 +61,7 @@ function addPatientReturnFunction()
 var app = {
     // Application Constructor
     initialize: function() {
+		dbWrapper.initialize();
 		dbWrapper.getLastIntervention(getLastInterventionReturnFunction);
         this.bindEvents();
     },
@@ -107,8 +108,9 @@ var app = {
 
     scan: function() {
         console.log('scanning');
-		console.log(lastIntervention);
-		console.log('lastINtevention: ' + lastIntervention.Id);
+		alert(lastIntervention);
+		if(lastIntervention != null)
+			alert(lastIntervention.Id);
 		alert("before init");
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 		alert("after init");
