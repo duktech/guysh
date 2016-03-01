@@ -53,6 +53,7 @@ function addInterventionReturnFunction()
 
 function addPatientReturnFunction()
 {
+	alert("before redirect");
 	window.open('scan-completed.html', '_self', 'location=yes');
 }
 
@@ -111,9 +112,9 @@ var app = {
 		alert(window.localStorage.getItem("lastIntervention"));
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
 			alert("There isn't denifed any intervention");
-		alert("before init");
+
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-		alert("after init");
+
         scanner.scan( function (result) { 
 
             alert("We got a barcode\n" + 
@@ -128,7 +129,9 @@ var app = {
             //document.getElementById("info").innerHTML = result.text;
 			
 			var res = result.text.split("|");
-			if(res.length == 4)
+			alert(res.length);
+			alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
+			if(res.length == 4) 
 			{
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
