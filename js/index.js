@@ -27,6 +27,8 @@ function getAllInterventionsReturnFunction(transaction, result){
 }
 
 function getLastInterventionReturnFunction(transaction, result){
+	alert(result);
+	alert(result.rows.length);
 	if (result != null && result.rows != null && result.rows.length>0) {
 		window.localStorage.setItem("lastIntervention", result.rows.item(0).Id);
 	}
@@ -52,7 +54,6 @@ function addInterventionReturnFunction()
 
 function addPatientReturnFunction()
 {
-	alert("before redirect");
 	window.open('scan-completed.html', '_self', 'location=yes');
 }
 
@@ -135,7 +136,7 @@ var app = {
 			//alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
 			if(res.length == 4) 
 			{
-				//alert("locastorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
+				alert("localstorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
 				//alert ("before save DB");
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
