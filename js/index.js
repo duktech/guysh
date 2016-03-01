@@ -130,7 +130,7 @@ var app = {
 			var res = result.text.split("|");
 			if(res.length == 4)
 			{
-				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim, res[2].trim, res[3].trim(), addPatientReturnFunction);
+				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");
