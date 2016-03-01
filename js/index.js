@@ -39,6 +39,17 @@ function getPatientByInterventionIdReturnFunction(transaction, result)
 		$('#patientDetails').append('<br/> Name: ' + row.Name + ' <br /> Surname: ' + row.Surname + ' <br /> BirthDate: ' + row.BirthDate.substr(0,4)+" / "+row.BirthDate.substr(4,2)+" / "+row.BirthDate.substr(6,2));
 	}
 }
+
+function getTeamByInterventionIdReturnFunction(transaction, result)
+{
+	if (result != null && result.rows != null && result.rows.length>0) {
+		var row = result.rows.item(0);
+		var teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' </li>';
+		if(row.IsLeader == '1')
+			teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' - Team safety leader </li>';
+		$('#teamDetails').append(teamMember);
+	}
+}
  
 function addInterventionReturnFunction()
 {
@@ -53,6 +64,11 @@ function addInterventionReturnFunction()
 function addPatientReturnFunction()
 {
 	window.open('scan-completed.html', '_self', 'location=yes');
+}
+
+function addTeamReturnFunction()
+{
+	window.open('scan-completed2.html', '_self', 'location=yes');
 }
 
 
@@ -72,8 +88,10 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 		if($('#scan').length)
 			document.getElementById('scan').addEventListener('click', this.scan, false);
-        if($('#encode').length)
-			document.getElementById('encode').addEventListener('click', this.encode, false);
+        if($('#scanTeamLeader').length)
+			document.getElementById('scanTeamLeader').addEventListener('click', this.scanTeamLeader, false);
+		if($('#scanTeamMember').length)
+			document.getElementById('scanTeamMember').addEventListener('click', this.scanTeamMember, false);
     },
 
     // deviceready Event Handler
@@ -104,6 +122,14 @@ var app = {
 			alert("There isn't defined any intervention");
 	},
 	
+	getTeamDetails: function(){	
+		dbWrapper.initialize();
+		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
+			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunction);		
+		else
+			alert("There isn't defined any intervention");
+	},
+	
 	createIntervention: function(type){
 		dbWrapper.initialize();
 		dbWrapper.addIntervention(type, addInterventionReturnFunction);		
@@ -122,6 +148,50 @@ var app = {
 			{
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
+			}
+			else{
+				alert ("QRCode do not contains valid information");
+			}
+        }, function (error) { 
+            console.log("Scanning failed: ", error); 
+        } );
+    },
+	
+	scanTeamLeader: function() {
+        console.log('scanning');		
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't defined any intervention");
+
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.scan( function (result) { 	
+			var res = result.text.split("|");
+			if(res.length == 3) 
+			{
+				dbWrapper.initialize();
+				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "1", addTeamReturnFunction);
+			}
+			else{
+				alert ("QRCode do not contains valid information");
+			}
+        }, function (error) { 
+            console.log("Scanning failed: ", error); 
+        } );
+    },
+	
+	scanTeamMember: function() {
+         console.log('scanning');		
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't defined any intervention");
+
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.scan( function (result) { 	
+			var res = result.text.split("|");
+			if(res.length == 3) 
+			{
+				dbWrapper.initialize();
+				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "0", addTeamReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");

@@ -15,21 +15,29 @@
 			
 			<button class="scan-button" onclick="window.open('scaning2.html', '_self', 'location=yes');">RESCAN</button>
 			<p><strong>Team</strong></p>
-			<ol class="list-members">
-				<li>A. Popescu - NURSE</li>
+			<ol class="list-members" id="teamDetails">
+				<!--<li>A. Popescu - NURSE</li>
 				<li>B. Ionescu - SURGEON</li>
-				<li>C. Dumitrescu - ANESTHETIST</li>
+				<li>C. Dumitrescu - ANESTHETIST</li>-->
 			</ol>
-			        </div>
-			<div class="app-footer">
+			<button id = "scanTeamMember" class="choose-button" >Scan Next Team Member</button>
+		</div>
+		<div class="app-footer">
+			
 			<button class="s-choose-button" onclick="window.open('sign-in.html', '_self', 'location=yes');">Next &gt;</button>
 		</div>
 
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+            dbWrapper.initialize();
             app.initialize();
+			setTimeout(function(){
+				app.getTeamDetails();
+			}, 1000);
         </script>
 		
     </body>

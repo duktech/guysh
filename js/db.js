@@ -72,7 +72,7 @@ var dbWrapper = {
 			// easily from the table.
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Intervention(Id INTEGER NOT NULL PRIMARY KEY, RegisterDate TEXT NOT NULL, Type TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Pacient(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, BirthDate TEXT NOT NULL, HospitalNr TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
-			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Team(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, Role TEXT NOT NULL)',[],this.ullHandler,this.errorHandler);
+			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Team(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, Role TEXT NOT NULL, IsLeader INTEGER NOT NULL)',[],this.ullHandler,this.errorHandler);
 
 		},this.errorHandler,this.successCallBack);
     },
@@ -99,9 +99,7 @@ var dbWrapper = {
 	},
 	
 	addPatient: function(interventionId, name, surname, birthDate, hospitalNr, addPatientReturnFunction){
-		//alert ("function: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
 		db.transaction(function(transaction) {
-			//alert ("trans: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
 			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], addPatientReturnFunction,this.errorHandler);
 		});
 
@@ -109,67 +107,46 @@ var dbWrapper = {
 	},
 
 	getAllPatients: function(getAllPatientsReturnFunction){
-		var rows = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Pacient;', [], getAllPatientsReturnFunction
-			/*function(transaction, result) {
-				if (result != null && result.rows != null) {
-					rows = result.rows;
-					for (var i = 0; i < result.rows.length; i++) {
-						var row = result.rows.item(i);
-						$('#lbUsers').append('<br>' + row.UserId + '. ' + row.FirstName+ ' ' + row.LastName);
-					}
-				}
-			}*/
 			,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
-
-		return rows;
 	},
 	
 	getPatientById: function(id, getPatientByIdReturnFunction){
-		var rows = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Pacient WHERE Id = '+ id +';', [],
 			getPatientByIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
-
-		return row;
 	},
 	
 	getPatientByInterventionId: function(id, getPatientByInterventionIdReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT * FROM Pacient WHERE InterventionId = '+ id +';', [],
+			transaction.executeSql('SELECT * FROM Pacient WHERE InterventionId = '+ id +' ORDER BY Id DESC;', [],
 			getPatientByInterventionIdReturnFunction ,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
 	},
 	
-	addTeam: function(interventionId, name, surname, role){
+	addTeam: function(interventionId, name, surname, role, isLeader,addTeamReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, Role) VALUES (?,?,?,?)',[interventionId, name, surname, role], this.nullHandler, this.errorHandler);
+			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, Role, IsLeader) VALUES (?,?,?,?,?)',[interventionId, name, surname, role,isLeader], addTeamReturnFunction, this.errorHandler);
 		});
 
 		return false;
 	},
 	
 	getTeamById: function(id, getTeamByIdReturnFunction){
-		var rows = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Team WHERE Id = '+ id +';', [],
 			getTeamByIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
-
-		return rows;
 	},
 	
 	getTeamByInterventionId: function(id, getTeamByInterventionIdReturnFunction){
-		var rows = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Team WHERE InterventionId = '+ id +';', [],
 			getTeamByInterventionIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
-
-		return rows;
 	}
 
 };
