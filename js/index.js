@@ -16,10 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+function getAllInterventionsReturnFunction(transaction, result)
+{
+
+				if (result != null && result.rows != null) {
+					rows = result.rows;
+					for (var i = 0; i < result.rows.length; i++) {
+						var row = result.rows.item(i);
+						$('#interventions').append('<br>' + row.Id + '. ' + row.RegisterDate+ ' ' + row.Type);
+					}
+				}
+
+}
+
  
 function addInterventionReturnFunction()
 {
-	window.open('scan-patient.html', '_self', 'location=yes');
+	dbWrapper.initialize();
+	dbWrapper.getAllInterventions(getAllInterventionsReturnFunction);	
+	setTimeout(function(){
+		window.open('scan-patient.html', '_self', 'location=yes');
+	}, 5000);
+	
 }
  
 var app = {

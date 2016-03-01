@@ -84,7 +84,7 @@ var dbWrapper = {
 		},this.errorHandler,this.nullHandler);
 	},
 	
-	getLastIntervention: function(getLastInterventionReturnFunction){
+	getAllInterventions: function(getLastInterventionReturnFunction){
 		var row = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Intervention ORDER BY Id DESC;', [], getLastInterventionReturnFunction);			
