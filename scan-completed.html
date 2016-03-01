@@ -32,7 +32,9 @@
         <script type="text/javascript">
             dbWrapper.initialize();
             app.initialize();
-			app.getPatientDetails();
+			setTimeout(function(){
+				app.getPatientDetails();
+			}, 2000);
         </script>
 		
     </body>

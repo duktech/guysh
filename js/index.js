@@ -29,7 +29,6 @@ function getAllInterventionsReturnFunction(transaction, result){
 function getLastInterventionReturnFunction(transaction, result){
 	if (result != null && result.rows != null && result.rows.length>0) {
 		window.localStorage.setItem("lastIntervention", result.rows.item(0).Id);
-		//lastIntervention = result.rows.item(0);		
 	}
 }
 
