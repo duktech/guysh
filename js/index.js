@@ -27,12 +27,8 @@ function getAllInterventionsReturnFunction(transaction, result){
 }
 
 function getLastInterventionReturnFunction(transaction, result){
-	alert(result);
-	alert(result.rows.length);
 	if (result != null && result.rows != null && result.rows.length>0) {
-		alert(result.rows.item(0).Id);
 		window.localStorage.setItem("lastIntervention", result.rows.item(0).Id);
-		alert("getItem(lastIntervention)" + window.localStorage.getItem("lastIntervention"));
 	}
 }
 
@@ -50,7 +46,7 @@ function addInterventionReturnFunction()
 	dbWrapper.getAllInterventions(getAllInterventionsReturnFunction);	
 	setTimeout(function(){
 		window.open('scan-patient.html', '_self', 'location=yes');
-	}, 2000);
+	}, 1000);
 	
 }
 
@@ -102,8 +98,8 @@ var app = {
 	
 	getPatientDetails: function(){	
 		dbWrapper.initialize();
-		alert("lastIntervention - patdet: " + window.localStorage.getItem("lastIntervention"));
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+		//alert("lastIntervention - patdet: " + window.localStorage.getItem("lastIntervention"));
+		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
 			dbWrapper.getPatientByInterventionId(window.localStorage.getItem("lastIntervention"), getPatientByInterventionIdReturnFunction);		
 		else
 			alert("There isn't defined any intervention");
