@@ -138,13 +138,10 @@ var dbWrapper = {
 	},
 	
 	getPatientByInterventionId: function(id, getPatientByInterventionIdReturnFunction){
-		var rows = null;
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Pacient WHERE InterventionId = '+ id +';', [],
 			getPatientByInterventionIdReturnFunction ,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
-
-		return row;
 	},
 	
 	addTeam: function(interventionId, name, surname, role){

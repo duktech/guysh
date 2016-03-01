@@ -14,8 +14,8 @@
         <div class="app">
            		<button class="scan-button" onclick="window.open('scaning.html', '_self', 'location=yes');">RESCAN</button>
 			<h1>Patient details</h1>
-			<p>Name: Popescu</p>
-			<p>Prenume: Ion</p>
+			<div id="patientDetails">
+			</div>
 			<br>
 			<br>
 			<p>Team safety leader</p>
@@ -24,11 +24,15 @@
 			<button class="s-choose-button" onclick="window.open('scan-tsl.html', '_self', 'location=yes');">Next &gt;</button>
 </div>
     
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+            dbWrapper.initialize();
             app.initialize();
+			app.getPatientDetails();
         </script>
 		
     </body>

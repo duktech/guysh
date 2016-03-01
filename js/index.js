@@ -98,9 +98,12 @@ var app = {
         console.log('Received Event: ' + id);
     },
 	
-	getPatientDetails: function(type){	
+	getPatientDetails: function(){	
 		dbWrapper.initialize();
-		dbWrapper.getPatientByInterventionId(interventionId, getPatientByInterventionIdReturnFunction);		
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			dbWrapper.getPatientByInterventionId(window.localStorage.getItem("lastIntervention"), getPatientByInterventionIdReturnFunction);		
+		else
+			alert("There isn't defined any intervention");
 	},
 	
 	createIntervention: function(type){
@@ -111,7 +114,7 @@ var app = {
     scan: function() {
         console.log('scanning');		
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
-			alert("There isn't denifed any intervention");
+			alert("There isn't defined any intervention");
 
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
