@@ -99,10 +99,10 @@ var dbWrapper = {
 	},
 	
 	addPatient: function(interventionId, name, surname, birthDate, hospitalNr, addPatientReturnFunction){
-		alert ("function: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
+		//alert ("function: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
 		db.transaction(function(transaction) {
-			alert ("trans: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
-			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], addPatientReturnFunction,this.errorHandler);
+			//alert ("trans: " + interventionId + " " + name + " " + surname + " " + birthDate + " " + hospitalNr);
+			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], addPatientReturnFunction,this.errorHandler);
 		});
 
 		return false;

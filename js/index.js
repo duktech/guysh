@@ -129,12 +129,12 @@ var app = {
             //document.getElementById("info").innerHTML = result.text;
 			
 			var res = result.text.split("|");
-			alert(res.length);
-			alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
+			//alert(res.length);
+			//alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
 			if(res.length == 4) 
 			{
-				alert("locastorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
-				alert ("before save DB");
+				//alert("locastorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
+				//alert ("before save DB");
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
