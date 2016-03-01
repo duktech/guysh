@@ -109,8 +109,7 @@ var app = {
 	},
 
     scan: function() {
-        console.log('scanning');
-		alert(window.localStorage.getItem("lastIntervention"));
+        console.log('scanning');		
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
 			alert("There isn't denifed any intervention");
 
@@ -134,6 +133,8 @@ var app = {
 			alert (res[0] + " " + res[1] + " " + res[2] + " " + res[3]);
 			if(res.length == 4) 
 			{
+				alert("locastorage lastIntervention: " + window.localStorage.getItem("lastIntervention"));
+				alert ("before save DB");
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
 			}
