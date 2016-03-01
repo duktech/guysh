@@ -99,9 +99,9 @@ var dbWrapper = {
 		},this.errorHandler,this.nullHandler);		
 	},
 	
-	addPatient: function(interventionId, name, surname, birthDate, hospitalNr){
+	addPatient: function(interventionId, name, surname, birthDate, hospitalNr, addPatientReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], this.nullHandler,this.errorHandler);
+			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], addPatientReturnFunction,this.errorHandler);
 		});
 
 		return false;
