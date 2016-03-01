@@ -84,10 +84,17 @@ var dbWrapper = {
 		},this.errorHandler,this.nullHandler);
 	},
 	
-	getAllInterventions: function(getLastInterventionReturnFunction){
+	getAllInterventions: function(getAllInterventionReturnFunction){
 		var row = null;
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT * FROM Intervention ORDER BY Id DESC;', [], getLastInterventionReturnFunction);			
+			transaction.executeSql('SELECT * FROM Intervention ORDER BY Id DESC;', [], getAllInterventionReturnFunction);			
+		},this.errorHandler,this.nullHandler);		
+	},
+	
+	getLastIntervention: function(getLastInterventionReturnFunction){
+		var row = null;
+		db.transaction(function(transaction) {
+			transaction.executeSql('SELECT * FROM Intervention ORDER BY Id DESC LIMIT 1;', [], getLastInterventionReturnFunction);			
 		},this.errorHandler,this.nullHandler);		
 	},
 	
