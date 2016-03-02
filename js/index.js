@@ -28,7 +28,19 @@ function getAllInterventionsReturnFunction(transaction, result){
 
 function getLastInterventionReturnFunction(transaction, result){
 	if (result != null && result.rows != null && result.rows.length>0) {
-		window.localStorage.setItem("lastIntervention", result.rows.item(0).Id);
+		var row = result.rows.item(0);
+		window.localStorage.setItem("lastIntervention", row.Id);
+		
+		if($('#interventionDetails').length){
+			var type="Surgery";
+			if(row.Type==2)
+				type="Radiology";
+			else if(row.Type==3)
+				type="Endoscopy";
+			else if(row.Type==4)
+				type="WARD";
+			$('#patientDetails').text(type + " - " + row.Id + " - " - row.RegisterDate)
+		}
 	}
 }
 

@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>
-					<ul>
+					<ul id="patientDetails">
 						<li>Name:</li>
 						<li>Date of birth:</li>
 						<li>Hospital no:</li>
@@ -34,9 +34,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Date:</td>
-				<td></td>
-				<td>18/02/2016</td>
+				<td>Intervention:</td>
+				<td colspan="2" id="interventionDetails"></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -58,42 +57,36 @@
 				<td>12:36</td>
 				<td>complete</td>
 			</tr>
+			
 			<tr>
-				<td>
-					<p><em>Team safety lead A. Popescu</em></p>
-				</td>
+				<td>Team</td>
 				<td></td>
 				<td>
-					<ul>
+					<ul id="teamDetails">
 						<li>A. Popescu</li>
 						<li>B. Ionescu</li>
 						<li>C. Dumitrescu</li>
 					</ul>
 				</td>
 			</tr>
-			<tr>
-				<td>Team</td>
-				<td></td>
-				<td>
-
-				</td>
-			</tr>
 		</table>
-	<div class="app-footer">
-		
-		
-
-		
+	<div class="app-footer">		
 		<button class="send-pdf-button" onclick="window.open('', '_self', 'location=yes');">SEND</button>
 		<button class="store-button" onclick="window.open('', '_self', 'location=yes');">PRINT</button>
 		<button class="p-s-button" onclick="window.open('', '_self', 'location=yes');">STORE</button>
 	</div>
-	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="barcodescanner.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript">
-		app.initialize();
-	</script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+			dbWrapper.initialize();
+            app.initialize();
+			setTimeout(function(){
+				app.getPatientDetails();				
+			}, 1000);
+        </script>
 
 </body>
 
