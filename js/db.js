@@ -147,7 +147,7 @@ var dbWrapper = {
 	
 	getTeamByInterventionId: function(id, getTeamByInterventionIdReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT * FROM Team WHERE InterventionId = '+ id +';', [],
+			transaction.executeSql('SELECT * FROM Team WHERE InterventionId = '+ id +' ORDER BY IsLeader DESC ;', [],
 			getTeamByInterventionIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
 	}
