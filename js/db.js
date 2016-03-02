@@ -100,6 +100,7 @@ var dbWrapper = {
 	
 	addPatient: function(interventionId, name, surname, birthDate, hospitalNr, addPatientReturnFunction){
 		db.transaction(function(transaction) {
+			transaction.executeSql('DELETE FROM Pacient WHERE InterventionId = ' + interventionId + ';',[],this.nullHandler,this.errorHandler);
 			transaction.executeSql('INSERT INTO Pacient(InterventionId, Name, Surname, BirthDate, HospitalNr) VALUES (?,?,?,?,?)',[interventionId, name, surname, birthDate, hospitalNr], addPatientReturnFunction,this.errorHandler);
 		});
 
@@ -129,6 +130,8 @@ var dbWrapper = {
 	
 	addTeam: function(interventionId, name, surname, role, isLeader,addTeamReturnFunction){
 		db.transaction(function(transaction) {
+			if(isLeader=="1")				
+				transaction.executeSql("DELETE FROM Team WHERE InterventionId = " + interventionId + " AND IsLeader = '1';",[],this.nullHandler,this.errorHandler);
 			transaction.executeSql('INSERT INTO Team(InterventionId, Name, Surname, Role, IsLeader) VALUES (?,?,?,?,?)',[interventionId, name, surname, role, isLeader], addTeamReturnFunction, this.errorHandler);
 		});
 
