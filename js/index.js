@@ -169,7 +169,7 @@ var app = {
 			if(res.length == 3) 
 			{
 				dbWrapper.initialize();
-				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "1", addTeamReturnFunction);
+				dbWrapper.addTeam(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "1", addTeamReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");
@@ -191,7 +191,7 @@ var app = {
 			if(res.length == 3) 
 			{
 				dbWrapper.initialize();
-				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "0", addTeamReturnFunction);
+				dbWrapper.addTeam(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "0", addTeamReturnFunction);
 			}
 			else{
 				alert ("QRCode do not contains valid information");
