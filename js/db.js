@@ -122,7 +122,7 @@ var dbWrapper = {
 	
 	getPatientByInterventionId: function(id, getPatientByInterventionIdReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT * FROM Team WHERE InterventionId = '+ id +' ORDER BY Id DESC;', [],
+			transaction.executeSql('SELECT * FROM Pacient WHERE InterventionId = '+ id +' ORDER BY Id DESC;', [],
 			getPatientByInterventionIdReturnFunction ,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
 	},

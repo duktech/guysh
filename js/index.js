@@ -18,7 +18,7 @@
  */
 
 function getAllInterventionsReturnFunction(transaction, result){
-	if (result != null && result.rows != null) {
+	if (result != null && result.rows != null && result.rows.length>0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
 			$('#interventions').append('<br>' + row.Id + '. ' + row.RegisterDate+ ' ' + row.Type);
@@ -43,11 +43,13 @@ function getPatientByInterventionIdReturnFunction(transaction, result)
 function getTeamByInterventionIdReturnFunction(transaction, result)
 {
 	if (result != null && result.rows != null && result.rows.length>0) {
-		var row = result.rows.item(0);
-		var teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' </li>';
-		if(row.IsLeader == '1')
-			teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' - Team safety leader </li>';
-		$('#teamDetails').append(teamMember);
+		for (var i = 0; i < result.rows.length; i++) {
+			var row = result.rows.item(i);
+			var teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' </li>';
+			if(row.IsLeader == '1')
+				teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' - Team safety leader </li>';
+			$('#teamDetails').append(teamMember);
+		}
 	}
 }
  
