@@ -39,7 +39,7 @@ function getLastInterventionReturnFunction(transaction, result){
 				type="Endoscopy";
 			else if(row.Type==4)
 				type="WARD";
-			$('#patientDetails').text(type + " - " + row.Id + " - " - row.RegisterDate)
+			$('#interventionDetails').text(type + " - " + row.Id + " - " + row.RegisterDate)
 		}
 	}
 }
