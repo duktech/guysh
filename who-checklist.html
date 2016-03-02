@@ -14,23 +14,12 @@
 <div class="top-bar"><h1>WHO CHECKLIST</h1></div>
 	<table class="gr-elem">
 			<tr>
-				<td><h2>PATIENT</h2></td>
-				<td>
-				</td>
-				<td>
-				</td>
+				<td colspan="3"><h2>PATIENT</h2></td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan = "3">
 					<ul id="patientDetails">
-						<li>Name:</li>
-						<li>Date of birth:</li>
-						<li>Hospital no:</li>
 					</ul>
-				</td>
-				<td>
-				</td>
-				<td>
 				</td>
 			</tr>
 			<tr>
@@ -60,12 +49,8 @@
 			
 			<tr>
 				<td>Team</td>
-				<td></td>
-				<td>
+				<td colspan="2">
 					<ul id="teamDetails">
-						<li>A. Popescu</li>
-						<li>B. Ionescu</li>
-						<li>C. Dumitrescu</li>
 					</ul>
 				</td>
 			</tr>
@@ -84,7 +69,8 @@
 			dbWrapper.initialize();
             app.initialize();
 			setTimeout(function(){
-				app.getPatientDetails();				
+				app.getPatientDetails();	
+				app.getTeamDetails();				
 			}, 1000);
         </script>
 
