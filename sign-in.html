@@ -10,100 +10,122 @@
 	<title>SIGN IN</title>
 </head>
 
-<body>
-		<div class="top-bar"><h1>SIGN IN</h1></div>
+<body class="orange_bg">
+	<div class="top-bar">
+		<h1>SIGN IN</h1></div>
 	<table class="gr-elem">
+		<tr>
+			<td>
+				<input type="checkbox" id="o11" />
+			</td>
+			<td>
+				<label for="o11"><strong>PATIENT HAS CONFIRMED</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot"></td>
+			<td class="sep_bot">
+				<ul>
+					<li>IDENTITY</li>
+					<li>SITE</li>
+					<li>PROCEDURE</li>
+					<li>CONSENT</li>
+				</ul>
+			</td>
+
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" id="o12" />
+			</td>
+			<td class="sep_bot">
+				<label for="o12"><strong>SITE MARKED/ NOT APPLICABLE</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" id="o13" />
+			</td>
+			<td class="sep_bot">
+				<label for="o13"><strong>ANAESTHESIA SAFETY CHECK COMPLETED</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" id="o14" />
+			</td>
+			<td class="sep_bot">
+				<label for="o14"><strong>PULSE OXIMETER ON PATIENT AND FUNCTIONING</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>DOES A PATIENT HAVE A:</strong></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>KNOWN ALLERGY?</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o161" value="o150" id="o15" />
+			</td>
+			<td>
+				<label for="o15">NO</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o161" value="o160" id="o16" />
+			</td>
+			<td>
+				<label for="o16">YES</label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>DIFFICULT AIRWAY/ ASPIRATION RISK?</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o182" value="o170" id="o17" />
+			</td>
+			<td>
+				<label for="o17">NO</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o182" value="o180" id="o18" />
+			</td>
+			<td>
+				<label for="o18">YES, AND EQUIPMENT/ ASSISTANCE AVAILALBLE</label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>RISK OF &gt; 500ML BLOOD LOSS (7ML/KG IN CHILDREN)?</strong></td>
 			<tr>
 				<td>
-					<input type="checkbox" id="o11"/>
+					<input type="radio" name="o201" value="o202" id="o19" />
 				</td>
-				<td><label for="o11">PATIENT HAS CONFIRMED</label></td>
-			</tr>
-			<tr>
-				<td></td>
 				<td>
-					<ul>
-						<li>IDENTITY</li>
-						<li>SITE</li>
-						<li>PROCEDURE</li>
-						<li>CONSENT</li>
-					</ul>
+					<label for="o19">NO</label>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" id="o12"/>
+					<input type="radio" name="o201" value="o201" id="o20" />
 				</td>
-				<td><label for="o12">SITE MARKED/ NOT APPLICABLE</label></td>
-			</tr>
-			<tr>
 				<td>
-					<input type="checkbox" id="o13"/>
+					<label for="o20">YES, AND ADEQUATE INTRAVENOUS ACCESS AND FLUIDS PLANNED</label>
 				</td>
-				<td><label for="o13">ANAESTHESIA SAFETY CHECK COMPLETED</label></td>
 			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o14"/>
-				</td>
-				<td><label for="o14">PULSE OXIMETER ON PATIENT AND FUNCTIONING</label></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>DOES A PATIENT HAVE A:</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>KNOWN ALLERGY?</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o15"/>
-				</td>
-				<td><label for="o15">NO</label></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o16"/>
-				</td>
-				<td><label for="o16">YES</label></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>DIFFICULT AIRWAY/ ASPIRATION RISK?</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o17"/>
-				</td>
-				<td><label for="o17">NO</label></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o18"/>
-				</td>
-				<td><label for="o18">YES, AND EQUIPMENT/ ASSISTANCE AVAILALBLE</label></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>RISK OF &gt; 500ML BLOOD LOSS (7ML/KG IN CHILDREN)?</td>
-				<tr>
-					<td>
-						<input type="checkbox" id="o19"/>
-					</td>
-					<td><label for="o19">NO</label></td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" id="o20"/>
-					</td>
-					<td><label for="o20">YES, AND ADEQUATE INTRAVENOUS ACCESS AND FLUIDS PLANNED</label></td>
-				</tr>
-			</tr>
-		</table>
+		</tr>
+	</table>
 	<div class="app-footer">
 
-		
+
 		<p><em>Team leader A. Popescu</em></p>
 		<button class="s-choose-button" onclick="window.open('time-out.html', '_self', 'location=yes');">DONE</button>
 
