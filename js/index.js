@@ -299,7 +299,7 @@ var app = {
 		window.html2pdf.create(
             page,
             //"~/Documents/test.pdf", // on iOS,
-             "test.pdf", on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+             "test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
             successPdf,
             errorPdf
         );
