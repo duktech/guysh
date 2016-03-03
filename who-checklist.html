@@ -54,9 +54,9 @@
 			dbWrapper.initialize();
             app.initialize();
 			setTimeout(function(){
+				app.getCheckListItems();
 				app.getPatientDetails();	
-				app.getTeamDetails();	
-				app.getCheckListItems();				
+				app.getTeamDetails();									
 			}, 1000);
         </script>
 

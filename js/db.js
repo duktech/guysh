@@ -155,6 +155,7 @@ var dbWrapper = {
 	
 	addCheckList: function(interventionId, name, addCheckListReturnFunction){
 		db.transaction(function(transaction) {		
+			console.log(interventionId+name);
 			transaction.executeSql("DELETE FROM CheckList WHERE InterventionId = " + interventionId + " AND Name = '" + name + "';",[],this.nullHandler,this.errorHandler);
 			transaction.executeSql('INSERT INTO CheckList(InterventionId, Name, SignDate, Status) VALUES (?,?,?,?)',[interventionId, name, getDateTime(), "COMPLETED"], addCheckListReturnFunction, this.errorHandler);
 		});
@@ -164,7 +165,7 @@ var dbWrapper = {
 	
 	getCheckListByInterventionId: function(id, getCheckListByInterventionIdReturnFunction){
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT * FROM CheckList WHERE InterventionId = '+ id +';', [], getCheckListByInterventionIdReturnFunction,this.errorHandler);
+			transaction.executeSql('SELECT * FROM CheckList WHERE InterventionId = '+ id +' ORDER BY Id ASC;', [], getCheckListByInterventionIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
 	}
 
