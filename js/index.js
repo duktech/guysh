@@ -135,6 +135,10 @@ var app = {
 			document.getElementById('signOutAction').addEventListener('click', this.signOutAction, false);
 		if($('#timeOutAction').length)
 			document.getElementById('timeOutAction').addEventListener('click', this.timeOutAction, false);
+		if($('#printReport').length)
+			document.getElementById('printReport').addEventListener('click', this.printReport, false);
+		if($('#sendPdf').length)
+			document.getElementById('sendPdf').addEventListener('click', this.sendPdf, false);
     },
 
     // deviceready Event Handler
@@ -272,6 +276,33 @@ var app = {
 			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
 		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", timeOutActionReturnFunction);		
+	},
+	
+	printReport: function(type){
+		var page = location.href;
+		cordova.plugins.printer.print(page, 'who-checklist.html', function () {
+			alert('printing finished or canceled');
+		});
+	},
+	
+	sendPdf: function(type){
+		
+		var successPdf = function(status) {
+            alert('Message: ' + status);
+        }
+
+        var errorPdf = function(status) {
+            alert('Error: ' + status);
+        }
+		var page = location.href;
+		
+		window.html2pdf.create(
+            page,
+            "~/Documents/test.pdf", // on iOS,
+            // "test.pdf", on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+            successPdf,
+            errorPdf
+        );
 	},
 
     encode: function() {
