@@ -96,15 +96,18 @@
 		
 		
 		<p><em>Team leader A. Popescu</em></p>
-		<button class="s-choose-button" onclick="window.open('sign-out.html', '_self', 'location=yes');">DONE</button>
+		<button class="s-choose-button" id="signOutAction" onclick="window.open('sign-out.html', '_self', 'location=yes');">DONE</button>
 
 	</div>
-	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="barcodescanner.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript">
-		app.initialize();
-	</script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            dbWrapper.initialize();
+            app.initialize();
+        </script>
 
 </body>
 

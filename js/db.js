@@ -72,7 +72,8 @@ var dbWrapper = {
 			// easily from the table.
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Intervention(Id INTEGER NOT NULL PRIMARY KEY, RegisterDate TEXT NOT NULL, Type TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
 			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Pacient(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, BirthDate TEXT NOT NULL, HospitalNr TEXT NOT NULL)',[],this.nullHandler,this.errorHandler);
-			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Team(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, Role TEXT NOT NULL, IsLeader INTEGER NOT NULL)',[],this.ullHandler,this.errorHandler);
+			tx.executeSql( 'CREATE TABLE IF NOT EXISTS Team(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, Surname TEXT NOT NULL, Role TEXT NOT NULL, IsLeader INTEGER NOT NULL)',[],this.nullHandler,this.errorHandler);
+			tx.executeSql( 'CREATE TABLE IF NOT EXISTS CheckList(Id INTEGER NOT NULL PRIMARY KEY,InterventionId INTEGER NOT NULL, Name TEXT NOT NULL, SignDate TEXT NOT NULL, Status TEXT NOT NULL )',[],this.nullHandler,this.errorHandler);
 
 		},this.errorHandler,this.successCallBack);
     },
@@ -149,6 +150,21 @@ var dbWrapper = {
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT * FROM Team WHERE InterventionId = '+ id +' ORDER BY IsLeader DESC ;', [],
 			getTeamByInterventionIdReturnFunction,this.errorHandler);
+		},this.errorHandler,this.nullHandler);
+	},
+	
+	addCheckList: function(interventionId, name, addCheckListReturnFunction){
+		db.transaction(function(transaction) {		
+			transaction.executeSql("DELETE FROM CheckList WHERE InterventionId = " + interventionId + " AND Name = " + name + ";",[],this.nullHandler,this.errorHandler);
+			transaction.executeSql('INSERT INTO CheckList(InterventionId, Name, SignDate, Status) VALUES (?,?,?,?)',[interventionId, name, getDateTime(), "COMPLETED"], addCheckListReturnFunction, this.errorHandler);
+		});
+
+		return false;
+	},
+	
+	getCheckListByInterventionId: function(id, getCheckListByInterventionIdReturnFunction){
+		db.transaction(function(transaction) {
+			transaction.executeSql('SELECT * FROM CheckList WHERE InterventionId = '+ id +';', [], getCheckListByInterventionIdReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
 	}
 

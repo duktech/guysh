@@ -64,6 +64,17 @@ function getTeamByInterventionIdReturnFunction(transaction, result)
 		}
 	}
 }
+
+function getCheckListByInterventionIdReturnFunction(transaction, result)
+{
+	if (result != null && result.rows != null && result.rows.length>0) {
+		for (var i = 0; i < result.rows.length; i++) {
+			var row = result.rows.item(i);
+			var checkList = '<tr><td>' + row.Name + '</td><td> ' + row.SignDate + '</td><td>' + row.Status + ' </td></tr>';
+			$('#checkListItems').insertAfter(checkList);
+		}
+	}
+}
  
 function addInterventionReturnFunction()
 {
@@ -71,8 +82,7 @@ function addInterventionReturnFunction()
 	dbWrapper.getAllInterventions(getAllInterventionsReturnFunction);	
 	setTimeout(function(){
 		window.open('scan-patient.html', '_self', 'location=yes');
-	}, 1000);
-	
+	}, 1000);	
 }
 
 function addPatientReturnFunction()
@@ -85,7 +95,20 @@ function addTeamReturnFunction()
 	window.open('scan-completed2.html', '_self', 'location=yes');
 }
 
+function signInActionReturnFunction()
+{
+	window.open('time-out.html', '_self', 'location=yes');
+}
 
+function timeOutActionReturnFunction()
+{
+	window.open('sign-out.html', '_self', 'location=yes');
+}
+
+function signOutActionReturnFunction()
+{
+	window.open('who-checklist.html', '_self', 'location=yes');
+}
  
 var app = {
     // Application Constructor
@@ -106,6 +129,12 @@ var app = {
 			document.getElementById('scanTeamLeader').addEventListener('click', this.scanTeamLeader, false);
 		if($('#scanTeamMember').length)
 			document.getElementById('scanTeamMember').addEventListener('click', this.scanTeamMember, false);
+		if($('#signInAction').length)
+			document.getElementById('signInAction').addEventListener('click', this.signInAction, false);
+		if($('#signOutAction').length)
+			document.getElementById('signOutAction').addEventListener('click', this.signOutAction, false);
+		if($('#timeOutAction').length)
+			document.getElementById('timeOutAction').addEventListener('click', this.timeOutAction, false);
     },
 
     // deviceready Event Handler
@@ -140,6 +169,14 @@ var app = {
 		dbWrapper.initialize();
 		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
 			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunction);		
+		else
+			alert("There isn't defined any intervention");
+	},
+	
+	getCheckListItems: function(){	
+		dbWrapper.initialize();
+		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
+			dbWrapper.getCheckListByInterventionId(window.localStorage.getItem("lastIntervention"), getCheckListByInterventionIdReturnFunction);		
 		else
 			alert("There isn't defined any intervention");
 	},
@@ -214,6 +251,27 @@ var app = {
             console.log("Scanning failed: ", error); 
         } );
     },
+	
+	signInAction: function(type){
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't defined any intervention");
+		dbWrapper.initialize();
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);		
+	},
+	
+	signOutAction: function(type){
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't defined any intervention");
+		dbWrapper.initialize();
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signInActionReturnFunction);		
+	},
+	
+	timeOutAction: function(type){
+		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+			alert("There isn't defined any intervention");
+		dbWrapper.initialize();
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", signInActionReturnFunction);		
+	},
 
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");

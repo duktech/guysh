@@ -26,26 +26,11 @@
 				<td>Intervention:</td>
 				<td colspan="2" id="interventionDetails"></td>
 			</tr>
-			<tr>
+			<tr id="checkListItems">
 				<td></td>
 				<td>Time</td>
 				<td>Status</td>
-			</tr>
-			<tr>
-				<td>Sign in</td>
-				<td>10:32</td>
-				<td>complete</td>
-			</tr>
-			<tr>
-				<td>Time out</td>
-				<td>10:47</td>
-				<td>complete</td>
-			</tr>
-			<tr>
-				<td>Sign out</td>
-				<td>12:36</td>
-				<td>complete</td>
-			</tr>
+			</tr>			
 			
 			<tr>
 				<td>Team</td>
@@ -70,7 +55,8 @@
             app.initialize();
 			setTimeout(function(){
 				app.getPatientDetails();	
-				app.getTeamDetails();				
+				app.getTeamDetails();	
+				app.getCheckListItems();				
 			}, 1000);
         </script>
 
