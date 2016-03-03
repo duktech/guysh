@@ -155,7 +155,7 @@ var dbWrapper = {
 	
 	addCheckList: function(interventionId, name, addCheckListReturnFunction){
 		db.transaction(function(transaction) {		
-			transaction.executeSql("DELETE FROM CheckList WHERE InterventionId = " + interventionId + " AND Name = " + name + ";",[],this.nullHandler,this.errorHandler);
+			transaction.executeSql("DELETE FROM CheckList WHERE InterventionId = " + interventionId + " AND Name = '" + name + "';",[],this.nullHandler,this.errorHandler);
 			transaction.executeSql('INSERT INTO CheckList(InterventionId, Name, SignDate, Status) VALUES (?,?,?,?)',[interventionId, name, getDateTime(), "COMPLETED"], addCheckListReturnFunction, this.errorHandler);
 		});
 

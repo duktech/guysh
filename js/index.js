@@ -253,24 +253,25 @@ var app = {
     },
 	
 	signInAction: function(type){
+	
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
-			alert("There isn't defined any intervention");
+			alert("There isn't defined any intervention");			
 		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);		
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);
 	},
 	
 	signOutAction: function(type){
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
 			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signInActionReturnFunction);		
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signOutActionReturnFunction);		
 	},
 	
 	timeOutAction: function(type){
 		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
 			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", signInActionReturnFunction);		
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", timeOutActionReturnFunction);		
 	},
 
     encode: function() {
