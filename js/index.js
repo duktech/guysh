@@ -287,8 +287,59 @@ var app = {
 	
 	sendPdf: function(type){
 		
+		function onFileSystemSuccess(fileSystem) {
+			alert(fileSystem.name);
+			var successPdf = function(status) {
+				alert('Message: ' + status);
+				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
+			}
+
+			var errorPdf = function(status) {
+				alert('Error: ' + status);
+			}
+			var page = location.href;
+			
+			window.html2pdf.create(
+				page,
+				//"~/Documents/test.pdf", // on iOS,
+				 "test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+				successPdf,
+				errorPdf
+			);
+		}
+
+		function onResolveSuccess(fileEntry) {
+			alert(fileEntry.name);
+			var successPdf = function(status) {
+				alert('Message: ' + status);
+				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
+			}
+
+			var errorPdf = function(status) {
+				alert('Error: ' + status);
+			}
+			var page = location.href;
+			
+			window.html2pdf.create(
+				page,
+				//"~/Documents/test.pdf", // on iOS,
+				 "test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+				successPdf,
+				errorPdf
+			);
+		}
+
+		function fail(evt) {
+			console.log(evt.target.error.code);
+		}
+		
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+        window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
+
+		
 		var successPdf = function(status) {
             alert('Message: ' + status);
+			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="test.pdf"', '_self', 'location=yes');;
         }
 
         var errorPdf = function(status) {
