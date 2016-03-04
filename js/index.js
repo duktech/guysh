@@ -107,6 +107,7 @@ function timeOutActionReturnFunction()
 
 function signOutActionReturnFunction()
 {
+	
 	window.open('who-checklist.html', '_self', 'location=yes');
 }
  
