@@ -288,8 +288,33 @@ var app = {
 	
 	sendPdf: function(type){
 		
+		function onFileSystemSuccess(fileSystem) {
+			alert(fileSystem.name);
+			var successPdf = function(status) {
+				alert('Message: ' + status);
+				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
+			}
+		}
+
+		function onResolveSuccess(fileEntry) {
+			alert(fileEntry.name);
+			var successPdf = function(status) {
+				alert('Message: ' + status);
+				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
+			}
+		}
+
+		function fail(evt) {
+			console.log(evt.target.error.code);
+		}
+		alert("before file requests");
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+        window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
+
+		
 		var successPdf = function(status) {
             alert('Message: ' + status);
+			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="test.pdf"', '_self', 'location=yes');;
         }
 
         var errorPdf = function(status) {
