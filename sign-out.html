@@ -7,71 +7,81 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
 	<title>SIGN OUT</title>
 </head>
 
 <body class="blue_bg">
-		<div class="top-bar"><h1>SIGN OUT</h1></div>
+	<div class="top-bar">
+		<h1>SIGN OUT - <em><strong>STL</strong>: A. Popescu</em></h1></div>
 	<table class="gr-elem">
-			<tr>
-				<td>
+		<tr>
+			<td>
 
-				</td>
-				<td><strong>NURSE VERBALLY CONFIRMS WITH THE TEAM:</strong></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o21"/>
-				</td>
-				<td><label for="o21">THE NAME OF THE PROCEDURE RECORDED</label></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o22"/>
-				</td>
-				<td>
-					<label for="o22">THET INSTRUMENT, SPONGE AND NEEDLE COUNTS ARE CORRECT (OR NOT APPLICABLE)</label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o23"/>
-				</td>
-				<td><label for="o23">HOW THE SPECIMEN IS LABELLED (INCLUDING PATIENT NAME)</label></td>
-			</tr>
-			<tr>
-				<td class="sep_bot">
-					<input type="checkbox" id="o24"/>
-				</td>
-				<td class="sep_bot"><label for="o24">WHETHER THERE ARE ANY EQUIPMENT PROBLEMS TO BE ADDRESSED</label></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="o25"/>
-				</td>
-				<td><label for="o25">SURGEON, ANAESTHESIA PROFESSIONAL AND NURSE REVIEW THE KEY CONCERNS FOR RECOVERY AND MANAGEMENT OF THIS PATIENT</label>
-				</td>
-			</tr>
-			
-		</table>
+			</td>
+			<td><strong>NURSE VERBALLY CONFIRMS WITH THE TEAM:</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" id="o21" class="styled"/>
+			</td>
+			<td>
+				<label for="o21">THE NAME OF THE PROCEDURE RECORDED</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" id="o22" class="styled"/>
+			</td>
+			<td>
+				<label for="o22">THET INSTRUMENT, SPONGE AND NEEDLE COUNTS ARE CORRECT (OR NOT APPLICABLE)</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" id="o23" />
+			</td>
+			<td>
+				<label for="o23">HOW THE SPECIMEN IS LABELLED (INCLUDING PATIENT NAME)</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" id="o24" />
+			</td>
+			<td class="sep_bot">
+				<label for="o24">WHETHER THERE ARE ANY EQUIPMENT PROBLEMS TO BE ADDRESSED</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" id="o25" />
+			</td>
+			<td>
+				<label for="o25">SURGEON, ANAESTHESIA PROFESSIONAL AND NURSE REVIEW THE KEY CONCERNS FOR RECOVERY AND MANAGEMENT OF THIS PATIENT</label>
+			</td>
+		</tr>
+
+	</table>
 	<div class="app-footer">
 
-		
-		<p><em>Team leader A. Popescu</em></p>
-		<button class="send-pdf-button" onclick="window.open('', '_self', 'location=yes');">SEND</button>
-		<button class="s-choose-button" id="signOutAction" >DONE</button>
-		
+
+		<button class="r-s-o-button" onclick="window.open('time-out.html', '_self', 'location=yes');">BACK</button>
+		<button class="m-s-o-button" id="sendPdf">SEND</button>
+		<button class="l-s-o-button" id="signOutAction">DONE</button>
+
 
 	</div>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="barcodescanner.js"></script>
-		<script type="text/javascript" src="js/db.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            dbWrapper.initialize();
-            app.initialize();
-        </script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/custom-form-elements.js"></script>
+	<script type="text/javascript">
+		dbWrapper.initialize();
+		app.initialize();
+	</script>
 
 </body>
 

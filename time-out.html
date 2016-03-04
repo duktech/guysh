@@ -7,11 +7,12 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
 	<title>TIME OUT</title>
 </head>
 
 <body class="green_bg">
-<div class="top-bar"><h1>TIME OUT</h1></div>
+<div class="top-bar"><h1>TIME OUT - <em><strong>STL</strong>: A. Popescu</em></h1></div>
 	<table class="gr-elem">
 			<tr>
 				<td class="sep_bot">
@@ -95,7 +96,7 @@
 	<div class="app-footer">
 		
 		
-		<p><em>Team leader A. Popescu</em></p>
+		<button class="b-button" onclick="window.open('sign-in.html', '_self', 'location=yes');">BACK</button>
 		<button class="s-choose-button" id="timeOutAction">DONE</button>
 
 	</div>
@@ -104,6 +105,7 @@
         <script type="text/javascript" src="barcodescanner.js"></script>
 		<script type="text/javascript" src="js/db.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/custom-form-elements.js"></script>
         <script type="text/javascript">
             dbWrapper.initialize();
             app.initialize();

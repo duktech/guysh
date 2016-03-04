@@ -141,6 +141,7 @@ h1 {
 
 .top-bar > h1 {
 	color: white;
+	display: inline-block;
 	float: left;
 	padding-left: 20px;
 	font-size: 15px;
@@ -180,11 +181,25 @@ h1 {
 	background-color: #00bfa5;
 	border: none;
 	color: white;
-	width: 50%;
-	height: 60px;
-	float: right;
+	width: 30%;
+	height: 90px;
 	font-size: 20px;
 	font-weight: 200;
+	position: absolute;
+	left: 70%;
+	bottom: 0;
+}
+
+.b-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	position: absolute;
+	bottom: 0;
 }
 
 .scan-button {
@@ -243,41 +258,89 @@ h1 {
 	padding-bottom: 5px;
 }
 
-.send-pdf-button {
+.b-s-button {
 	background-color: #e53935;
 	border: none;
 	color: white;
-	width: 30%;
-	height: 60px;
+	width: 23%;
+	height: 90px;
 	float: left;
 	font-size: 20px;
 	font-weight: 200;
 }
 
-.store-button {
+.send-pdf-button {
 	background-color: #e53935;
 	border: none;
 	color: white;
-	width: 30%;
-	height: 60px;
+	width: 23%;
+	height: 90px;
 	font-size: 20px;
 	font-weight: 200;
-	margin-left: 5%;
-	margin-right: auto;
+	float: right;
+	margin-left: 2.66%;
 }
 
 .p-s-button {
 	background-color: #e53935;
 	border: none;
 	color: white;
+	width: 23%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+	margin-left: 2.66%;
+}
+
+.store-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 23%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+	margin-left: 2.66%;
+}
+.r-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
 	width: 30%;
-	height: 60px;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: left;
+}
+.m-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.l-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
 	font-size: 20px;
 	font-weight: 200;
 	float: right;
 }
 
 .app-footer {
+	position: absolute;
 	display: block;
 	width: 100%;
 	margin: 0 auto;
