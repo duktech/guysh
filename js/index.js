@@ -104,14 +104,41 @@ function signOutActionReturnFunction() {
 
 
 // VLAD JS
-function checkForm(form) {
-	if (!form.cbox.checked) {
-		alert("Please make sure you check all the checkboxes!");
-		form.cbox.focus();
-		return false;
-	}
-	return true;
+//function checkForm(form) {
+//	if (!form.cbox.checked) {
+//		alert("Please make sure you check all the checkboxes!");
+//		form.cbox.focus();
+//		return false;
+//	}
+//	return true;
+//}
+
+// SIGN-IN.HTML
+/*function validateForm() {
+	//var fnames = ["o161", "o182", "o201"];
+    var radios = document.getElementsByName("o161");
+    var formValid = true;
+	//if (!checkfield("o161"))
+	//	formValid = false;
+    if (!formValid) alert("Make sure you select atleast one option!(YES or NO)");
+    return formValid;
 }
+
+function checkfield(fieldname){
+
+   var radios = document.getElementsByName(fieldname);
+    var formValid = false;
+
+    var i = 0;
+    while (!formValid && i < radios.length) {
+        if (radios[i].checked) formValid = true;
+        i++;
+    }
+	
+	return formValid;
+}*/
+
+
 // END VLAD JS
 
 
