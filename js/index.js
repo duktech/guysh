@@ -124,18 +124,18 @@ function checkfield(fieldname) {
 function validateForm() {
 	var formValid = true;
 	//SIGN-IN.HTML
-	if (document.getElementsByName("o161").length>0 && !checkfield("o161"))
+	if (document.getElementsByName("o161").length > 0 && !checkfield("o161"))
 		formValid = false;
-	if (document.getElementsByName("o182").length>0 && !checkfield("o182"))
+	if (document.getElementsByName("o182").length > 0 && !checkfield("o182"))
 		formValid = false;
-	if (document.getElementsByName("o201").length>0 && !checkfield("o201"))
+	if (document.getElementsByName("o201").length > 0 && !checkfield("o201"))
 		formValid = false;
 	// TIME-OUT.HTML
-	if (document.getElementsByName("o60").length>0 && !checkfield("o60"))
+	if (document.getElementsByName("o60").length > 0 && !checkfield("o60"))
 		formValid = false;
-	if (document.getElementsByName("o80").length>0 && !checkfield("o80"))
+	if (document.getElementsByName("o80").length > 0 && !checkfield("o80"))
 		formValid = false;
-	
+
 	return formValid;
 }
 
@@ -154,11 +154,11 @@ function checkCheckbox() {
 
 function validatefunctions() {
 	var validation = true;
-	if(!validateForm())
+	if (!validateForm())
 		validation = false;
-	if(!checkCheckbox())
+	if (!checkCheckbox())
 		validation = false;
-	
+
 	return validation;
 }
 // END VLAD JS
@@ -305,38 +305,32 @@ var app = {
 	},
 
 	signInAction: function (type) {
-if(validatefunctions())
-		{
-		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
-			alert("There isn't defined any intervention");
-		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);
-		}
-		else 
+		if (validatefunctions()) {
+			if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
+				alert("There isn't defined any intervention");
+			dbWrapper.initialize();
+			dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);
+		} else
 			alert("Make sure you've checked all the checkboxes!")
 	},
 
 	signOutAction: function (type) {
-		if(validatefunctions())
-		{
-		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
-			alert("There isn't defined any intervention");
-		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signOutActionReturnFunction);
-		}
-		else
+		if (validatefunctions()) {
+			if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
+				alert("There isn't defined any intervention");
+			dbWrapper.initialize();
+			dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signOutActionReturnFunction);
+		} else
 			alert("Make sure you've checked all the checkboxes!");
 	},
 
 	timeOutAction: function (type) {
-		if(validatefunctions())
-		{
+		if (validatefunctions()) {
 			if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 				alert("There isn't defined any intervention");
 			dbWrapper.initialize();
 			dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", timeOutActionReturnFunction);
-		}
-		else
+		} else
 			alert("Make sure you've checked all the checkboxes!");
 	},
 
