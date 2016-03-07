@@ -17,280 +17,278 @@
  * under the License.
  */
 
-function getAllInterventionsReturnFunction(transaction, result){
-	if (result != null && result.rows != null && result.rows.length>0) {
+function getAllInterventionsReturnFunction(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			$('#interventions').append('<br>' + row.Id + '. ' + row.RegisterDate+ ' ' + row.Type);
+			$('#interventions').append('<br>' + row.Id + '. ' + row.RegisterDate + ' ' + row.Type);
 		}
 	}
 }
 
-function getLastInterventionReturnFunction(transaction, result){
-	if (result != null && result.rows != null && result.rows.length>0) {
+function getLastInterventionReturnFunction(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
 		window.localStorage.setItem("lastIntervention", row.Id);
-		
-		if($('#interventionDetails').length){
-			var type="Surgery";
-			if(row.Type==2)
-				type="Radiology";
-			else if(row.Type==3)
-				type="Endoscopy";
-			else if(row.Type==4)
-				type="WARD";
+
+		if ($('#interventionDetails').length) {
+			var type = "Surgery";
+			if (row.Type == 2)
+				type = "Radiology";
+			else if (row.Type == 3)
+				type = "Endoscopy";
+			else if (row.Type == 4)
+				type = "WARD";
 			$('#interventionDetails').text(type + " - " + row.Id + " - " + row.RegisterDate)
 		}
 	}
 }
 
-function getPatientByInterventionIdReturnFunction(transaction, result)
-{
-	if (result != null && result.rows != null && result.rows.length>0) {
+function getPatientByInterventionIdReturnFunction(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
-		$('#patientDetails').append('<br/> Name: ' + row.Name + ' <br /> Surname: ' + row.Surname + ' <br /> BirthDate: ' + row.BirthDate.substr(0,4)+" / "+row.BirthDate.substr(4,2)+" / "+row.BirthDate.substr(6,2) + "<br /> Hospital No: " + row.HospitalNr);
+		$('#patientDetails').append('<br/> Name: ' + row.Name + ' <br /> Surname: ' + row.Surname + ' <br /> BirthDate: ' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + "<br /> Hospital No: " + row.HospitalNr);
 	}
 }
 
-function getTeamByInterventionIdReturnFunction(transaction, result)
-{
-	if (result != null && result.rows != null && result.rows.length>0) {
+function getTeamByInterventionIdReturnFunction(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
 			var teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' </li>';
-			if(row.IsLeader == '1')
+			if (row.IsLeader == '1')
 				teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' - Team safety leader </li>';
 			$('#teamDetails').append(teamMember);
 		}
 	}
 }
 
-function getCheckListByInterventionIdReturnFunction(transaction, result)
-{
-	if (result != null && result.rows != null && result.rows.length>0) {
+function getCheckListByInterventionIdReturnFunction(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
 			var checkList = '<tr><td>' + row.Name + '</td><td> ' + row.SignDate + '</td><td>' + row.Status + ' </td></tr>';
-			$(checkList).insertAfter( $('#checkListItems'));
+			$(checkList).insertAfter($('#checkListItems'));
 		}
 	}
 }
- 
-function addInterventionReturnFunction()
-{
+
+function addInterventionReturnFunction() {
 	dbWrapper.initialize();
-	dbWrapper.getAllInterventions(getAllInterventionsReturnFunction);	
-	setTimeout(function(){
+	dbWrapper.getAllInterventions(getAllInterventionsReturnFunction);
+	setTimeout(function () {
 		window.open('scan-patient.html', '_self', 'location=yes');
-	}, 1000);	
+	}, 1000);
 }
 
-function addPatientReturnFunction()
-{
+function addPatientReturnFunction() {
 	window.open('scan-completed.html', '_self', 'location=yes');
 }
 
-function addTeamReturnFunction()
-{
+function addTeamReturnFunction() {
 	window.open('scan-completed2.html', '_self', 'location=yes');
 }
 
-function signInActionReturnFunction()
-{
+function signInActionReturnFunction() {
 	window.open('time-out.html', '_self', 'location=yes');
 }
 
-function timeOutActionReturnFunction()
-{
+function timeOutActionReturnFunction() {
 	window.open('sign-out.html', '_self', 'location=yes');
 }
 
-function signOutActionReturnFunction()
-{
-	
+function signOutActionReturnFunction() {
+
 	window.open('who-checklist.html', '_self', 'location=yes');
 }
- 
+
+
+// VLAD JS
+function checkForm(form) {
+	if (!form.cbox.checked) {
+		alert("Please make sure you check all the checkboxes!");
+		form.cbox.focus();
+		return false;
+	}
+	return true;
+}
+// END VLAD JS
+
+
 var app = {
-    // Application Constructor
-    initialize: function() {
+	// Application Constructor
+	initialize: function () {
 		dbWrapper.initialize();
 		dbWrapper.getLastIntervention(getLastInterventionReturnFunction);
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // `load`, `deviceready`, `offline`, and `online`.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-		if($('#scan').length)
+		this.bindEvents();
+	},
+	// Bind Event Listeners
+	//
+	// Bind any events that are required on startup. Common events are:
+	// `load`, `deviceready`, `offline`, and `online`.
+	bindEvents: function () {
+		document.addEventListener('deviceready', this.onDeviceReady, false);
+		if ($('#scan').length)
 			document.getElementById('scan').addEventListener('click', this.scan, false);
-        if($('#scanTeamLeader').length)
+		if ($('#scanTeamLeader').length)
 			document.getElementById('scanTeamLeader').addEventListener('click', this.scanTeamLeader, false);
-		if($('#scanTeamMember').length)
+		if ($('#scanTeamMember').length)
 			document.getElementById('scanTeamMember').addEventListener('click', this.scanTeamMember, false);
-		if($('#signInAction').length)
+		if ($('#signInAction').length)
 			document.getElementById('signInAction').addEventListener('click', this.signInAction, false);
-		if($('#signOutAction').length)
+		if ($('#signOutAction').length)
 			document.getElementById('signOutAction').addEventListener('click', this.signOutAction, false);
-		if($('#timeOutAction').length)
+		if ($('#timeOutAction').length)
 			document.getElementById('timeOutAction').addEventListener('click', this.timeOutAction, false);
-		if($('#printReport').length)
+		if ($('#printReport').length)
 			document.getElementById('printReport').addEventListener('click', this.printReport, false);
-		if($('#sendPdf').length)
+		if ($('#sendPdf').length)
 			document.getElementById('sendPdf').addEventListener('click', this.sendPdf, false);
-    },
+	},
 
-    // deviceready Event Handler
-    //
-    // The scope of `this` is the event. In order to call the `receivedEvent`
-    // function, we must explicity call `app.receivedEvent(...);`
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
+	// deviceready Event Handler
+	//
+	// The scope of `this` is the event. In order to call the `receivedEvent`
+	// function, we must explicity call `app.receivedEvent(...);`
+	onDeviceReady: function () {
+		app.receivedEvent('deviceready');
+	},
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+	// Update DOM on a Received Event
+	receivedEvent: function (id) {
+		var parentElement = document.getElementById(id);
+		var listeningElement = parentElement.querySelector('.listening');
+		var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+		listeningElement.setAttribute('style', 'display:none;');
+		receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-    },
-	
-	getPatientDetails: function(){	
+		console.log('Received Event: ' + id);
+	},
+
+	getPatientDetails: function () {
 		dbWrapper.initialize();
-		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
-			dbWrapper.getPatientByInterventionId(window.localStorage.getItem("lastIntervention"), getPatientByInterventionIdReturnFunction);		
+		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
+			dbWrapper.getPatientByInterventionId(window.localStorage.getItem("lastIntervention"), getPatientByInterventionIdReturnFunction);
 		else
 			alert("There isn't defined any intervention");
 	},
-	
-	getTeamDetails: function(){	
+
+	getTeamDetails: function () {
 		dbWrapper.initialize();
-		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
-			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunction);		
+		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
+			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunction);
 		else
 			alert("There isn't defined any intervention");
 	},
-	
-	getCheckListItems: function(){	
+
+	getCheckListItems: function () {
 		dbWrapper.initialize();
-		if(window.localStorage.getItem("lastIntervention")!= null && window.localStorage.getItem("lastIntervention").length>0)
-			dbWrapper.getCheckListByInterventionId(window.localStorage.getItem("lastIntervention"), getCheckListByInterventionIdReturnFunction);		
+		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
+			dbWrapper.getCheckListByInterventionId(window.localStorage.getItem("lastIntervention"), getCheckListByInterventionIdReturnFunction);
 		else
 			alert("There isn't defined any intervention");
 	},
-	
-	createIntervention: function(type){
+
+	createIntervention: function (type) {
 		dbWrapper.initialize();
-		dbWrapper.addIntervention(type, addInterventionReturnFunction);		
+		dbWrapper.addIntervention(type, addInterventionReturnFunction);
 	},
 
-    scan: function() {
-        console.log('scanning');		
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+	scan: function () {
+		console.log('scanning');
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 			alert("There isn't defined any intervention");
 
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-        scanner.scan( function (result) { 	
+		scanner.scan(function (result) {
 			var res = result.text.split("|");
-			if(res.length == 4) 
-			{
+			if (res.length == 4) {
 				dbWrapper.initialize();
 				dbWrapper.addPatient(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), res[3].trim(), addPatientReturnFunction);
+			} else {
+				alert("QRCode do not contains valid information");
 			}
-			else{
-				alert ("QRCode do not contains valid information");
-			}
-        }, function (error) { 
-            console.log("Scanning failed: ", error); 
-        } );
-    },
-	
-	scanTeamLeader: function() {
-        console.log('scanning');		
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+		}, function (error) {
+			console.log("Scanning failed: ", error);
+		});
+	},
+
+	scanTeamLeader: function () {
+		console.log('scanning');
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 			alert("There isn't defined any intervention");
 
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-        scanner.scan( function (result) { 	
+		scanner.scan(function (result) {
 			var res = result.text.split("|");
-			if(res.length == 3) 
-			{
+			if (res.length == 3) {
 				dbWrapper.initialize();
 				dbWrapper.addTeam(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "1", addTeamReturnFunction);
+			} else {
+				alert("QRCode do not contains valid information");
 			}
-			else{
-				alert ("QRCode do not contains valid information");
-			}
-        }, function (error) { 
-            console.log("Scanning failed: ", error); 
-        } );
-    },
-	
-	scanTeamMember: function() {
-         console.log('scanning');		
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+		}, function (error) {
+			console.log("Scanning failed: ", error);
+		});
+	},
+
+	scanTeamMember: function () {
+		console.log('scanning');
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 			alert("There isn't defined any intervention");
 
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-        scanner.scan( function (result) { 	
+		scanner.scan(function (result) {
 			var res = result.text.split("|");
-			if(res.length == 3) 
-			{
+			if (res.length == 3) {
 				dbWrapper.initialize();
 				dbWrapper.addTeam(window.localStorage.getItem("lastIntervention"), res[0].trim(), res[1].trim(), res[2].trim(), "0", addTeamReturnFunction);
+			} else {
+				alert("QRCode do not contains valid information");
 			}
-			else{
-				alert ("QRCode do not contains valid information");
-			}
-        }, function (error) { 
-            console.log("Scanning failed: ", error); 
-        } );
-    },
-	
-	signInAction: function(type){
-	
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
-			alert("There isn't defined any intervention");			
+		}, function (error) {
+			console.log("Scanning failed: ", error);
+		});
+	},
+
+	signInAction: function (type) {
+
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
+			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
 		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign in", signInActionReturnFunction);
 	},
-	
-	signOutAction: function(type){
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+
+	signOutAction: function (type) {
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signOutActionReturnFunction);		
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Sign out", signOutActionReturnFunction);
 	},
-	
-	timeOutAction: function(type){
-		if(window.localStorage.getItem("lastIntervention")== null || window.localStorage.getItem("lastIntervention").length<1)
+
+	timeOutAction: function (type) {
+		if (window.localStorage.getItem("lastIntervention") == null || window.localStorage.getItem("lastIntervention").length < 1)
 			alert("There isn't defined any intervention");
 		dbWrapper.initialize();
-		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", timeOutActionReturnFunction);		
+		dbWrapper.addCheckList(window.localStorage.getItem("lastIntervention"), "Time out", timeOutActionReturnFunction);
 	},
-	
-	printReport: function(type){
+
+	printReport: function (type) {
 		var page = location.href;
 		cordova.plugins.printer.print(page, 'who-checklist.html', function () {
 			alert('printing finished or canceled');
 		});
 	},
-	
-	sendPdf: function(type){
-		
+
+	sendPdf: function (type) {
+
 		function onFileSystemSuccess(fileSystem) {
 			alert(fileSystem.name);
-			var successPdf = function(status) {
+			var successPdf = function (status) {
 				alert('Message: ' + status);
 				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
 			}
@@ -298,7 +296,7 @@ var app = {
 
 		function onResolveSuccess(fileEntry) {
 			alert(fileEntry.name);
-			var successPdf = function(status) {
+			var successPdf = function (status) {
 				alert('Message: ' + status);
 				window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="\\myhost\myfolder\myfile.lis"', '_self', 'location=yes');;
 			}
@@ -309,37 +307,36 @@ var app = {
 		}
 		alert("before file requests");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
-        window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
+		window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
 
-		
-		var successPdf = function(status) {
-            alert('Message: ' + status);
+
+		var successPdf = function (status) {
+			alert('Message: ' + status);
 			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="test.pdf"', '_self', 'location=yes');;
-        }
+		}
 
-        var errorPdf = function(status) {
-            alert('Error: ' + status);
-        }
+		var errorPdf = function (status) {
+			alert('Error: ' + status);
+		}
 		var page = location.href;
-		
+
 		window.html2pdf.create(
-            page,
-            //"~/Documents/test.pdf", // on iOS,
-             "test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
-            successPdf,
-            errorPdf
-        );
+			page,
+			//"~/Documents/test.pdf", // on iOS,
+			"test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+			successPdf,
+			errorPdf
+		);
 	},
 
-    encode: function() {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-        scanner.encode(scanner.Encode.TEXT_TYPE, "marius rata : 5 sept 1975", function(success) {
-            alert("encode success: " + success);
-          }, function(fail) {
-            alert("encoding failed: " + fail);
-          }
-        );
+	encode: function () {
+		var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+		scanner.encode(scanner.Encode.TEXT_TYPE, "marius rata : 5 sept 1975", function (success) {
+			alert("encode success: " + success);
+		}, function (fail) {
+			alert("encoding failed: " + fail);
+		});
 
-    }
+	}
 
 };
