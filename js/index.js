@@ -104,41 +104,63 @@ function signOutActionReturnFunction() {
 
 
 // VLAD JS
-//function checkForm(form) {
-//	if (!form.cbox.checked) {
-//		alert("Please make sure you check all the checkboxes!");
-//		form.cbox.focus();
-//		return false;
-//	}
-//	return true;
-//}
 
-// SIGN-IN.HTML
-/*function validateForm() {
-	//var fnames = ["o161", "o182", "o201"];
-    var radios = document.getElementsByName("o161");
-    var formValid = true;
-	//if (!checkfield("o161"))
-	//	formValid = false;
-    if (!formValid) alert("Make sure you select atleast one option!(YES or NO)");
-    return formValid;
+
+
+function checkfield(fieldname) {
+
+	var radios = document.getElementsByName(fieldname);
+	var formValid = false;
+
+	var i = 0;
+	while (!formValid && i < radios.length) {
+		if (radios[i].checked) formValid = true;
+		i++;
+	}
+
+	return formValid;
 }
 
-function checkfield(fieldname){
-
-   var radios = document.getElementsByName(fieldname);
-    var formValid = false;
-
-    var i = 0;
-    while (!formValid && i < radios.length) {
-        if (radios[i].checked) formValid = true;
-        i++;
-    }
+function validateForm() {
+	var formValid = true;
+	//SIGN-IN.HTML
+	if (!checkfield("o161"))
+		formValid = false;
+	if (!checkfield("o182"))
+		formValid = false;
+	if (!checkfield("o201"))
+		formValid = false;
+	// TIME-OUT.HTML
+	if (!checkfield("o60"))
+		formValid = false;
+	if (!checkfield("o80"))
+		formValid = false;
 	
+	if (!formValid) alert("Make sure you select atleast one option!(YES or NO)");
 	return formValid;
-}*/
+}
 
+// Checkbox Function
 
+function checkCheckbox() {
+	var cbx = document.getElementsByName("cbox");
+
+	for (i = 0; i < cbx.length; i++) {
+		if (cbx[i].checked) {
+			return true;
+		}
+		alert("Make sure you've checked all the checkboxes!");
+		return false;
+	}
+}
+
+function validatefunctions() {
+	var validation = true;
+	validation &= validateForm();
+	validation &= checkCheckbox();
+	return validation;
+
+}
 // END VLAD JS
 
 
