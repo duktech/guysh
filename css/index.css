@@ -39,7 +39,8 @@ body {
 	width: 100%;
 }
 
-.orange_bg {
+
+/*.orange_bg {
 	background-color: #fff3e0;
 }
 
@@ -49,7 +50,7 @@ body {
 
 .green_bg {
 	background-color: #e8f5e9;
-}
+}*/
 
 
 /* Portrait layout (default) */
@@ -70,6 +71,20 @@ body {
 		background-position: left center;
 		margin: 0 auto;
 	}
+}
+
+.fp-logo {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.fp-f-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	max-width: 100%;
 }
 
 h1 {
@@ -155,7 +170,7 @@ h1 {
 }
 
 .app-bg {
-	background: url(../img/app-bg.png) no-repeat center top;
+	/*background: url(../img/app-bg.png) no-repeat center top;*/
 }
 
 .app-title {
@@ -304,6 +319,7 @@ h1 {
 	float: right;
 	margin-left: 2.66%;
 }
+
 .r-s-o-button {
 	display: inline-block;
 	background-color: #e53935;
@@ -315,6 +331,7 @@ h1 {
 	font-weight: 200;
 	float: left;
 }
+
 .m-s-o-button {
 	display: inline-block;
 	background-color: #e53935;
@@ -324,9 +341,9 @@ h1 {
 	height: 90px;
 	font-size: 20px;
 	font-weight: 200;
-	margin-left: 5%;
-	margin-right: 5%;
+	float: right;
 }
+
 .l-s-o-button {
 	display: inline-block;
 	background-color: #e53935;
@@ -368,4 +385,87 @@ input[type=radio] {
 
 .sep_bot {
 	border-bottom: 1px solid black;
+}
+
+
+/* END */
+
+#patientDetails {
+	border: 3px solid black;
+	font-family: "Arial", sans-serif;
+	padding: 10px;
+}
+
+.sign-in-title {
+	color: green;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.time-out-title {
+	color: red;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.sign-out-title {
+	color: blue;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.pdf-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20%;
+}
+
+.h-img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.w-title {
+	margin-top: 20px;
+}
+
+.w-title h1 {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.w-title h2 {
+	color: black;
+	font-size: 35px;
+	font-style: italic;
+}
+.a-data {
+	border: 1px solid black;
+	margin: 20px auto;
+}
+
+.a-title {
+	color: red;
+	font-weight: bolder;
+	text-transform: capitalize;
+}
+.a-data th {
+	margin: 0;
+	padding: 0 5px;
+}
+
+.green-title {
+	color: green;
+	font-weight: bold;
 }

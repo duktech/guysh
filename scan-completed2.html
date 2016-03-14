@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-		
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>SCAN COMPLETED</title>
-    </head>
-	
-    <body>
-		<div class="top-bar">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<title>SCAN COMPLETED</title>
+</head>
+
+<body>
+	<!--<div class="top-bar">
 			<h1>SCAN COMPLETED - <em><strong>STL</strong>: A. Popescu</em></h1>
 			<h2 id="interventionDetails"></h2>
+		</div>-->
+	<header>
+		<img class="h-img" src="img/header/headerimg.jpg" />
+	</header>
+	<div class="app">
+		<div class="w-title">
+			<h1>Scan completed</h1>
+			<h2 id="interventionDetails"></h2>
 		</div>
-        <div class="app">
-			
-			<button class="scan-button" onclick="window.open('scan-completed.html', '_self', 'location=yes');">RESCAN</button>
-			<p><strong>Team</strong></p>
-			<ol class="list-members" id="teamDetails">
-				<!--<li>A. Popescu - NURSE</li>
+		<button class="scan-button" onclick="window.open('scan-completed.html', '_self', 'location=yes');">RESCAN</button>
+		<p><strong>Team</strong></p>
+		<ol class="list-members" id="teamDetails">
+			<!--<li>A. Popescu - NURSE</li>
 				<li>B. Ionescu - SURGEON</li>
 				<li>C. Dumitrescu - ANESTHETIST</li>-->
-			</ol>
-			<button id = "scanTeamMember" class="choose-button" >Scan Next Team Member</button>
-		</div>
-		<div class="app-footer">
-			<button class="b-button" onclick="window.open('scan-completed.html', '_self', 'location=yes');">BACK</button>
-			<button class="s-choose-button" onclick="window.open('sign-in.html', '_self', 'location=yes');">Next &gt;</button>
-		</div>
+		</ol>
+		<button id="scanTeamMember" class="choose-button">Scan Next Team Member</button>
+	</div>
+	<div class="app-footer">
+		<button class="b-button" onclick="window.open('scan-completed.html', '_self', 'location=yes');">BACK</button>
+		<button class="s-choose-button" onclick="window.open('sign-in.html', '_self', 'location=yes');">Next &gt;</button>
+	</div>
 
-        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="barcodescanner.js"></script>
-		<script type="text/javascript" src="js/db.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            dbWrapper.initialize();
-            app.initialize();
-			setTimeout(function(){
-				app.getTeamDetails();
-			}, 500);
-        </script>
-		
-    </body>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		dbWrapper.initialize();
+		app.initialize();
+		setTimeout(function () {
+			app.getTeamDetails();
+		}, 500);
+	</script>
+
+</body>
+
 </html>
