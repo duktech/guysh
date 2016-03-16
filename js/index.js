@@ -69,6 +69,8 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 			var row = result.rows.item(i);
 			var checkList = '<tr><td>' + row.Name + '</td><td> ' + row.SignDate + '</td><td>' + row.Status + ' </td></tr>';
 			$(checkList).insertAfter($('#checkListItems'));
+			//stefan
+   			//$(checkList).insertAfter($('.a-data thead'));
 		}
 	}
 }
