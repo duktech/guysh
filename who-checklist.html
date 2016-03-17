@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<title>WHO CHECKLIST</title>
+</head>
+
+<body>
+	<div class="top-bar"><h1>WHO CHECKLIST - </h1><h2 id="interventionDetails"></h2></div>
+	
+	<table class="gr-elem">
+			<tr>
+				<td colspan="3"><h2>PATIENT</h2></td>
+			</tr>
+			<tr>
+				<td colspan = "3">
+					<ul id="patientDetails">
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>Intervention:</td>
+				<td colspan="2" id="interventionDetails"></td>
+			</tr>
+			<tr id="checkListItems">
+				<td></td>
+				<td>Time</td>
+				<td>Status</td>
+			</tr>			
+			
+			<tr>
+				<td>Team</td>
+				<td colspan="2">
+					<ul id="teamDetails">
+					</ul>
+				</td>
+			</tr>
+		</table>
+	<div class="app-footer">
+		<button class="b-s-button" onclick="window.open('sign-out.html', '_self', 'location=yes');">BACK</button>
+		<button class="send-pdf-button" onclick="window.open('send-page.html', '_self', 'location=yes');">SEND</button> <!--id="sendPdf"-->
+		<button class="store-button" id="printReport" onclick="window.open('print-page.html', '_self', 'location=yes');">PRINT</button>
+		<button class="p-s-button" onclick="window.open('', '_self', 'location=yes');">STORE</button>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="barcodescanner.js"></script>
+		<script type="text/javascript" src="js/db.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+			dbWrapper.initialize();
+            app.initialize();
+			setTimeout(function(){
+				app.getCheckListItems();
+				app.getPatientDetails();	
+				app.getTeamDetails();									
+			}, 500);
+        </script>
+
+</body>
+
+</html>

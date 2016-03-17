@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
+	<title>TIME OUT</title>
+</head>
+
+<body class="green_bg">
+	<div class="top-bar">
+		<!--<h1>TIME OUT - <em><strong>STL</strong>: A. Popescu</em></h1></div>-->
+		<h1>Before skin incision...</h1>
+	</div>
+	<h1 class="time-out-title">TIME OUT</h1>
+		<table class="gr-elem">
+			<tr>
+				<td class="sep_bot">
+					<input type="checkbox" name="cbox" id="o1" class="styled" />
+				</td>
+				<td class="sep_bot">
+					<label name="Option1" for="o1"><strong>CONFIRM ALL TEAM MEMBERS HAVE INTRODUCED THEMSELVES BY NAME AND ROLE</strong></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="cbox" id="o2" class="styled" />
+				</td>
+				<td>
+					<label name="Option2" for="o2"><strong>SURGEON, ANAESTHESIA PROFESSIONAL AND NURSE VERBALLY CONFIRM</strong></label>
+				</td>
+			</tr>
+			<tr>
+				<td class="sep_bot"></td>
+				<td class="sep_bot">
+					<ul>
+						<li>PATIENT</li>
+						<li>SITE</li>
+						<li>PROCEDURE</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+				</td>
+				<td><strong>ANTICIPATED CRITICAL EVENTS</strong></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="cbox" id="o3" class="styled" />
+				</td>
+				<td>
+					<label name="Option3" for="o3"><strong>SURGEON REVIEWS: WHAT ARE THE CRITICAL OR UNEXPECTED STEPS, OPERATIVE DURATION, ANTICIPATED BLOOD LOSS?</strong></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="cbox" id="o4" class="styled" />
+				</td>
+				<td>
+					<label name="Option4" for="o4"><strong>ANAESTHESIA TEAM REVIEWS: ARE THERE ANY PATIENT-SPECIFIC CONCERNS?</strong></label>
+				</td>
+			</tr>
+			<tr>
+				<td class="sep_bot">
+					<input type="checkbox" name="cbox" id="o5" class="styled" />
+				</td>
+				<td class="sep_bot">
+					<label name="Option5" for="o5"><strong>NURSING TEAM REVIEWS: HAS STERILITY (INCLUDING INDICATOR RESULTS) BEEN CONFIRMED? ARE THERE EQUIPMENT ISSUES OR ANY CONCERNS?</strong></label>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><strong>HAS ANTIBIOTIC PROPHYLAXIS BEEN GIVEN WITHIN THE LAST 60 MINUTES?</strong></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="o60" value="o601" id="o6" class="styled" />
+				</td>
+				<td>
+					<label for="o6">YES</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="o60" value="o602" id="o7" class="styled" />
+				</td>
+				<td>
+					<label for="o7">NOT APPLICABLE</label>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><strong>IS ESSENTIAL IMAGING DISPLAYED?</strong></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="o80" value="o81" id="o8" class="styled" />
+				</td>
+				<td>
+					<label for="o8">YES</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="o80" value="o82" id="o9" class="styled" />
+				</td>
+				<td>
+					<label for="o9">NOT APPLICABLE</label>
+				</td>
+			</tr>
+		</table>
+
+		<div class="app-footer">
+
+
+			<button class="b-button" onclick="window.open('sign-in.html', '_self', 'location=yes');">BACK</button>
+			<button class="s-choose-button" id="timeOutAction">DONE</button>
+
+		</div>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/custom-form-elements.js"></script>
+	<script type="text/javascript">
+		dbWrapper.initialize();
+		app.initialize();
+	</script>
+
+</body>
+
+</html>
