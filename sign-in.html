@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
+	<title>SIGN IN</title>
+</head>
+
+<body class="orange_bg">
+	<div class="top-bar">
+		<!--<h1>SIGN IN - <em><strong>STL</strong>: A. Popescu</em></h1>-->
+		<h1>Before induction of anaesthesia...</h1>
+	</div>
+
+	<h1 class="sign-in-title">SIGN IN</h1>
+	<table class="gr-elem">
+		<tr>
+			<td>
+				<input type="checkbox" name="cbox" id="o11"  class="styled" />
+			</td>
+			<td>
+				<label for="o11"><strong>PATIENT HAS CONFIRMED</strong></label>
+		</tr>
+		<tr>
+			<td class="sep_bot"></td>
+			<td class="sep_bot">
+				<ul>
+					<li>IDENTITY</li>
+					<li>SITE</li>
+					<li>PROCEDURE</li>
+					<li>CONSENT</li>
+				</ul>
+			</td>
+
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" name="cbox" id="o12"  class="styled" />
+			</td>
+			<td class="sep_bot">
+				<label for="o12"><strong>SITE MARKED/ NOT APPLICABLE</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" name="cbox" id="o13" class="styled" />
+			</td>
+			<td class="sep_bot">
+				<label for="o13"><strong>ANAESTHESIA SAFETY CHECK COMPLETED</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="sep_bot">
+				<input type="checkbox" name="cbox" id="o14"  class="styled" />
+			</td>
+			<td class="sep_bot">
+				<label for="o14"><strong>PULSE OXIMETER ON PATIENT AND FUNCTIONING</strong></label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>DOES PATIENT HAVE A:</strong></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>KNOWN ALLERGY?</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o161" value="o150" id="o15"  class="styled"/>
+			</td>
+			<td>
+				<label for="o15">NO</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o161" value="o160" id="o16"  class="styled"/>
+			</td>
+			<td>
+				<label for="o16">YES</label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>DIFFICULT AIRWAY/ ASPIRATION RISK?</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o182" value="o170" id="o17"  class="styled" />
+			</td>
+			<td>
+				<label for="o17">NO</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name="o182" value="o180" id="o18"  class="styled" />
+			</td>
+			<td>
+				<label for="o18">YES, AND EQUIPMENT/ ASSISTANCE AVAILALBLE</label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><strong>RISK OF &gt; 500ML BLOOD LOSS (7ML/KG IN CHILDREN)?</strong></td>
+			<tr>
+				<td>
+					<input type="radio" name="o201" value="o202" id="o19"  class="styled" />
+				</td>
+				<td>
+					<label for="o19">NO</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="o201" value="o201" id="o20"  class="styled" />
+				</td>
+				<td>
+					<label for="o20">YES, AND ADEQUATE INTRAVENOUS ACCESS AND FLUIDS PLANNED</label>
+				</td>
+			</tr>
+		</tr>
+	</table>
+	<div class="app-footer">
+		<button class="b-button" onclick="window.open('scan-completed2.html', '_self', 'location=yes');">BACK</button>
+		<button class="s-choose-button" type="submit" id="signInAction">DONE</button>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/custom-form-elements.js"></script>
+	<script type="text/javascript">
+		dbWrapper.initialize();
+		app.initialize();
+	</script>
+
+</body>
+
+</html>

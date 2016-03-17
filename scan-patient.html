@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<title>Scan patient</title>
+</head>
+
+<body>
+	<!--<div class="top-bar">
+			<h1>SCAN PATIENT</h1>
+			<h2 id="interventionDetails"></h2>
+		</div>-->
+	<header>
+		<img class="h-img" src="img/header/headerimg.jpg" />
+	</header>
+	<div class="app">
+		<div class="w-title">
+			<h1>SCAN PATIENT</h1>
+			<h2 id="interventionDetails"></h2>
+		</div>
+
+		<img src="img/scan.png" class="scan-img" />
+		<button id="scan" class="choose-button">Scan patient</button>
+		<!--<button class="choose-button" onclick="window.open('scaning.html', '_self', 'location=yes');">Scan patient</button>-->
+		<button class="choose-button">Enter patient</button>
+
+	</div>
+	<button class="b-button" onclick="window.open('choose.html', '_self', 'location=yes');">BACK</button>
+
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="js/db.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		dbWrapper.initialize();
+		app.initialize();
+	</script>
+
+</body>
+
+</html>

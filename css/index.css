@@ -1,0 +1,479 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+* {
+	-webkit-touch-callout: none;
+	/* prevent callout to copy image, etc when tap to hold */
+	-webkit-text-size-adjust: none;
+	/* prevent webkit from resizing text to fit */
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/* make transparent link selection, adjust last value opacity 0 to 1.0 */
+	-webkit-user-select: none;
+	/* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+body {
+	background-attachment: fixed;
+	font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	font-size: 23px;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+
+/*.orange_bg {
+	background-color: #fff3e0;
+}
+
+.blue_bg {
+	background-color: #d5d5ff;
+}
+
+.green_bg {
+	background-color: #e8f5e9;
+}*/
+
+
+/* Portrait layout (default) */
+
+.app {
+	height: 100%;
+	width: 400px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* Landscape layout (with min-width) */
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+	.app {
+		background-position: left center;
+		margin: 0 auto;
+	}
+}
+
+.fp-logo {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.fp-f-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	max-width: 100%;
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 0px;
+	overflow: visible;
+	padding: 0px;
+	text-align: center;
+}
+
+.event {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: #FFFFFF;
+	font-size: 12px;
+	margin: 0px 30px;
+	padding: 2px 0px;
+}
+
+.event.listening {
+	background-color: #333333;
+	display: block;
+}
+
+.event.received {
+	background-color: #4B946A;
+	display: none;
+}
+
+@keyframes fade {
+	from {
+		opacity: 1.0;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1.0;
+	}
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: 1.0;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1.0;
+	}
+}
+
+.blink {
+	animation: fade 3000ms infinite;
+	-webkit-animation: fade 3000ms infinite;
+}
+
+
+/* CUSTOM CSS */
+
+.top-bar {
+	width: 100%;
+	height: 50px;
+	background-color: #212121;
+	line-height: 50px;
+}
+
+.top-bar > h1 {
+	color: white;
+	display: inline-block;
+	float: left;
+	padding-left: 20px;
+	font-size: 15px;
+}
+
+.top-bar > h2 {
+	color: white;
+	float: right;
+	padding-left: 20px;
+	font-size: 10px;
+}
+
+.app-bg {
+	/*background: url(../img/app-bg.png) no-repeat center top;*/
+}
+
+.app-title {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-weight: 500;
+	font-size: 30px;
+}
+
+.choose-button {
+	color: white;
+	background-color: #00bfa5;
+	border: none;
+	height: 100px;
+	width: 100%;
+	font-size: 30px;
+	font-weight: 200;
+	text-transform: capitalize;
+	margin-top: 50px;
+}
+
+.s-choose-button {
+	background-color: #00bfa5;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	position: absolute;
+	left: 70%;
+	bottom: 0;
+}
+
+.b-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	position: absolute;
+	bottom: 0;
+}
+
+.scan-button {
+	color: white;
+	background-color: #e53935;
+	border: 0;
+	border-radius: 150px;
+	height: 100px;
+	width: 200px;
+	font-size: 30px;
+	font-weight: 200;
+	text-transform: capitalize;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.scan-img {
+	max-width: 100%;
+	height: auto;
+	margin-top: 50px;
+}
+
+.apr {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50px;
+	height: 50px;
+	padding-top: 200px;
+}
+
+.avatar {
+	width: 50%;
+	height: auto;
+}
+
+.list-members {
+	text-align: left;
+}
+
+.gr-elem {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 100%;
+	line-height: auto;
+	font-size: 22px;
+	text-align: left;
+}
+
+.gr-elem td {
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.b-s-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 23%;
+	height: 90px;
+	float: left;
+	font-size: 20px;
+	font-weight: 200;
+}
+
+.send-pdf-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 23%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+	margin-left: 2.66%;
+}
+
+.p-s-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 23%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+	margin-left: 2.66%;
+}
+
+.store-button {
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 23%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+	margin-left: 2.66%;
+}
+
+.r-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: left;
+}
+
+.m-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+}
+
+.l-s-o-button {
+	display: inline-block;
+	background-color: #e53935;
+	border: none;
+	color: white;
+	width: 30%;
+	height: 90px;
+	font-size: 20px;
+	font-weight: 200;
+	float: right;
+}
+
+.app-footer {
+	position: absolute;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	bottom: 0;
+}
+
+
+/* Checkbox redim */
+
+input[type=checkbox] {
+	background: none;
+	/* All browsers except webkit*/
+	transform: scale(2);
+	/* Webkit browsers*/
+	-webkit-transform: scale(2);
+}
+
+input[type=radio] {
+	background: none;
+	/* All browsers except webkit*/
+	transform: scale(2);
+	/* Webkit browsers*/
+	-webkit-transform: scale(2);
+}
+
+.sep_bot {
+	border-bottom: 1px solid black;
+}
+
+
+/* END */
+
+#patientDetails {
+	border: 5px solid black;
+	font-family: "Arial", sans-serif;
+	padding: 10px;
+}
+
+.sign-in-title {
+	color: green;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.time-out-title {
+	color: red;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.sign-out-title {
+	color: blue;
+	font-family: "Arial", sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.pdf-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20%;
+}
+
+.h-img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.w-title {
+	margin-top: 20px;
+}
+
+.w-title h1 {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.w-title h2 {
+	color: black;
+	font-size: 35px;
+	font-style: italic;
+}
+.a-data {
+	border: 1px solid black;
+	margin: 20px auto;
+}
+
+.a-title {
+	color: red;
+	font-weight: bolder;
+	text-transform: capitalize;
+}
+.a-data th {
+	margin: 0;
+	padding: 0 5px;
+}
+.patienttable {
+	width: 100%;
+}
+.green-title {
+	color: green;
+	font-weight: bold;
+}
+.lcol {
+	text-align: left;
+}
+.ptitle {
+	font-weight: bold;
+}
