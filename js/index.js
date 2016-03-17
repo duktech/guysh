@@ -47,7 +47,7 @@ function getLastInterventionReturnFunction(transaction, result) {
 function getPatientByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
-		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + ' <br /> DOB: ' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + "<br /> Hospital No: " + row.HospitalNr);
+		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '</table>');
 	}
 }
 

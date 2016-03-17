@@ -391,7 +391,7 @@ input[type=radio] {
 /* END */
 
 #patientDetails {
-	border: 3px solid black;
+	border: 5px solid black;
 	font-family: "Arial", sans-serif;
 	padding: 10px;
 }
@@ -464,8 +464,16 @@ input[type=radio] {
 	margin: 0;
 	padding: 0 5px;
 }
-
+.patienttable {
+	width: 100%;
+}
 .green-title {
 	color: green;
+	font-weight: bold;
+}
+.lcol {
+	text-align: left;
+}
+.ptitle {
 	font-weight: bold;
 }
