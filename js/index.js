@@ -364,7 +364,7 @@ var app = {
 		function fail(evt) {
 			console.log(evt.target.error.code);
 		}
-		alert("before file requests");
+		//alert("before file requests");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
 		window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
 
