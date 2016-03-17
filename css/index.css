@@ -391,7 +391,7 @@ input[type=radio] {
 /* END */
 
 #patientDetails {
-	border: 3px solid black;
+	border: 5px solid black;
 	font-family: "Arial", sans-serif;
 	padding: 10px;
 }
