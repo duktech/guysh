@@ -477,3 +477,12 @@ input[type=radio] {
 .ptitle {
 	font-weight: bold;
 }
+tr#checkListItems td{
+	font-weight: bold;
+}
+#patientDetails .green-title{
+	text-align: center;
+}
+#patientDetails h3{
+	text-align: center;
+}

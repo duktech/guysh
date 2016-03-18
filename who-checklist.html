@@ -15,20 +15,14 @@
 	
 	<table class="gr-elem">
 			<tr>
-				<td colspan="3"><h2>PATIENT</h2></td>
-			</tr>
-			<tr>
 				<td colspan = "3">
 					<ul id="patientDetails">
+						<h3>PATIENT DETAILS</h3>
 					</ul>
 				</td>
 			</tr>
-			<tr>
-				<td>Intervention:</td>
-				<td colspan="2" id="interventionDetails"></td>
-			</tr>
 			<tr id="checkListItems">
-				<td></td>
+				<td>Checks</td>
 				<td>Time</td>
 				<td>Status</td>
 			</tr>			
@@ -58,7 +52,7 @@
 			setTimeout(function(){
 				app.getCheckListItems();
 				app.getPatientDetails();	
-				app.getTeamDetails();									
+				app.getTeamDetails();
 			}, 500);
         </script>
 
