@@ -52,7 +52,7 @@ function getLastInterventionReturnFunction(transaction, result) {
 function getPatientByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
-		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td></td>Richard Bright, Guy&#39;s Hospital</tr></table>');
+		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td>Richard Bright, Guy&#39;s Hospital</td></tr></table>');
 	}
 }
 
@@ -74,12 +74,12 @@ function getTeamByInterventionIdReturnFunctionForSummary(transaction, result) {
 			var row = result.rows.item(i);
 			var teamMember = row.Name + ' ' + row.Surname;
 			if (row.IsLeader == '1'){
-				$('#teamDetails .safety_team_lead').append(teamMember);
+				$('.safety_team_lead').append(teamMember);
 			}else{
-				if($('#teamDetails .team_members').text() ==""){
-					$('#teamDetails .team_members').append(teamMember);
+				if($('.team_members').text() ==""){
+					$('.team_members').append(teamMember);
 				}else{
-					$('#teamDetails .team_members').append(', ' +teamMember);
+					$('.team_members').append(', ' +teamMember);
 				}
 
 			}

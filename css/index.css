@@ -492,3 +492,6 @@ tr#checkListItems td{
 .blue_text{
 	color: blue;
 }
+#interventionDetailsInPage{
+	width: 100%;
+}
