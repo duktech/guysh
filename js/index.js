@@ -99,10 +99,9 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 }
 
 function getAllCheckListsReturnFunction(transaction, result) {
-	console.log('callback');
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
-			console.log(result.rows[i]);
+
 
 			checkNames = result.rows[i].CheckName.split(',');
 			checkDates = result.rows[i].CheckDate.split(',');
@@ -116,9 +115,7 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			else if (result.rows[i].interventionType == 4)
 				type = "WARD";
 
-			console.log(checkNames);
-			console.log(checkDates);
-			console.log(checkStatus);
+
 			var final_stauts = "COMPLETE";
 			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
 				final_stauts = "incomplete";
