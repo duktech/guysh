@@ -101,7 +101,7 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 function getAllCheckListsReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
-			//var checkNames = result.rows[i].CheckName.split(',');
+			var checkNames = result.rows[i].CheckName.split(',');
 			var checkDates = result.rows[i].CheckDate.split(',');
 			var checkStatus = result.rows[i].CheckStatus.split(',');
 
@@ -130,7 +130,6 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			$('#allCheckListItems').append(html);
 		}
 	}
-	return true;
 }
 
 function addInterventionReturnFunction() {
