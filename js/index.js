@@ -99,13 +99,14 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 }
 
 function getAllCheckListsReturnFunction(transaction, result) {
+	alert('in callback', result);
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 
 
-			checkNames = result.rows[i].CheckName.split(',');
-			checkDates = result.rows[i].CheckDate.split(',');
-			checkStatus = result.rows[i].CheckStatus.split(',');
+			var checkNames = result.rows[i].CheckName.split(',');
+			var checkDates = result.rows[i].CheckDate.split(',');
+			var checkStatus = result.rows[i].CheckStatus.split(',');
 
 			var type = "Surgery";
 			if (result.rows[i].interventionType == 2)
@@ -311,6 +312,7 @@ var app = {
 
 	getAllCheckLists: function () {
 		dbWrapper.initialize();
+		alert('fct getAllCheckLists after init');
 		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
 			dbWrapper.getAllCheckLists(getAllCheckListsReturnFunction);
 		else
