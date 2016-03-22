@@ -486,3 +486,9 @@ tr#checkListItems td{
 #patientDetails h3{
 	text-align: center;
 }
+.red_text{
+	color: red;
+}
+.blue_text{
+	color: blue;
+}

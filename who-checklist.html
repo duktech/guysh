@@ -16,10 +16,13 @@
 	<table class="gr-elem">
 			<tr>
 				<td colspan = "3">
-					<ul id="patientDetails">
+					<ul id="patientDetails" class="add_extra">
 						<h3>PATIENT DETAILS</h3>
 					</ul>
 				</td>
+			</tr>
+			<tr id="interventionDetailsInPage">
+
 			</tr>
 			<tr id="checkListItems">
 				<td>Checks</td>
@@ -28,9 +31,16 @@
 			</tr>			
 			
 			<tr>
-				<td>Team</td>
-				<td colspan="2">
+				<td colspan="3">
 					<ul id="teamDetails">
+						<tr>
+							<td class="red_text">Team Safety Lead<td>
+							<td class="safety_team_lead"></td>
+						</tr>
+						<tr class="blue_text">
+							<td>Team Member</td>
+							<td class="team_members"></td>
+						</tr>
 					</ul>
 				</td>
 			</tr>
@@ -52,7 +62,7 @@
 			setTimeout(function(){
 				app.getCheckListItems();
 				app.getPatientDetails();	
-				app.getTeamDetails();
+				app.getTeamDetailsForSummary();
 			}, 500);
         </script>
 

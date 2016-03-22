@@ -42,17 +42,22 @@ function getLastInterventionReturnFunction(transaction, result) {
 				type = "WARD";
 			$('#interventionDetails').text(type + " - " + row.Id + " - " + row.RegisterDate)
 		}
+
+		if($('#interventionDetailsInPage').length > 0){
+			$('#interventionDetailsInPage').append('<tr> <td>Procedure date:</td> <td>'+row.RegisterDate+'</td> </tr> <tr> <td>Site:</td> <td>Guy&#39;s Hospital</td> </tr> <tr> <td>Checklist:</td> <td>WHO Patient Safety</td> </tr>');
+		}
 	}
 }
 
 function getPatientByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
-		$('#patientDetails').prepend('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '</table>');
+		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td></td>Richard Bright, Guy&#39;s Hospital</tr></table>');
 	}
 }
 
 function getTeamByInterventionIdReturnFunction(transaction, result) {
+
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
@@ -63,7 +68,24 @@ function getTeamByInterventionIdReturnFunction(transaction, result) {
 		}
 	}
 }
+function getTeamByInterventionIdReturnFunctionForSummary(transaction, result) {
+	if (result != null && result.rows != null && result.rows.length > 0) {
+		for (var i = 0; i < result.rows.length; i++) {
+			var row = result.rows.item(i);
+			var teamMember = row.Name + ' ' + row.Surname;
+			if (row.IsLeader == '1'){
+				$('#teamDetails .safety_team_lead').append(teamMember);
+			}else{
+				if($('#teamDetails .team_members').text() ==""){
+					$('#teamDetails .team_members').append(teamMember);
+				}else{
+					$('#teamDetails .team_members').append(', ' +teamMember);
+				}
 
+			}
+		}
+	}
+}
 function getCheckListByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
@@ -230,6 +252,14 @@ var app = {
 		dbWrapper.initialize();
 		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
 			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunction);
+		else
+			alert("There isn't defined any intervention");
+	},
+
+	getTeamDetailsForSummary: function () {
+		dbWrapper.initialize();
+		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
+			dbWrapper.getTeamByInterventionId(window.localStorage.getItem("lastIntervention"), getTeamByInterventionIdReturnFunctionForSummary);
 		else
 			alert("There isn't defined any intervention");
 	},
