@@ -495,3 +495,6 @@ tr#checkListItems td{
 #interventionDetailsInPage{
 	width: 100%;
 }
+.text-center{
+	text-align: center;
+}

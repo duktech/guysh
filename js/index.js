@@ -52,7 +52,7 @@ function getLastInterventionReturnFunction(transaction, result) {
 function getPatientByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
-		$('#patientDetails').append('<span class="green-title"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td>Richard Bright, Guy&#39;s Hospital</td></tr></table>');
+		$('#patientDetails').append('<span class="green-title text-center"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td>Richard Bright, Guy&#39;s Hospital</td></tr></table>');
 	}
 }
 
@@ -94,6 +94,46 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 			$(checkList).insertAfter($('#checkListItems'));
 			//stefan
    			//$(checkList).insertAfter($('.a-data thead'));
+		}
+	}
+}
+
+function getAllCheckListsReturnFunction(transaction, result) {
+	console.log('callback');
+	if (result != null && result.rows != null && result.rows.length > 0) {
+		for (var i = 0; i < result.rows.length; i++) {
+			console.log(result.rows[i]);
+
+			checkNames = result.rows[i].CheckName.split(',');
+			checkDates = result.rows[i].CheckDate.split(',');
+			checkStatus = result.rows[i].CheckStatus.split(',');
+
+			var type = "Surgery";
+			if (result.rows[i].interventionType == 2)
+				type = "Radiology";
+			else if (result.rows[i].interventionType == 3)
+				type = "Endoscopy";
+			else if (result.rows[i].interventionType == 4)
+				type = "WARD";
+
+			console.log(checkNames);
+			console.log(checkDates);
+			console.log(checkStatus);
+			var final_stauts = "COMPLETE";
+			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
+				final_stauts = "incomplete";
+			}
+			var html = '<tr>';
+			html += '<td>'+result.rows[i].interventionDate+'</td>';
+			html += '<td>'+type+'</td>';
+			html += '<td>Guy&#39;s Hospital</td>';
+			html += '<td>'+checkDates[0]+'</td>';
+			html += '<td>'+checkDates[2]+'</td>';
+			html += '<td>'+checkDates[1]+'</td>';
+			html += '<td>'+final_stauts+'</td>';
+			html += '<td>'+result.rows[i].TeamSafetyLead+'</td>';
+			html += '</tr>';
+			$('#allCheckListItems').append(html);
 		}
 	}
 }
@@ -268,6 +308,14 @@ var app = {
 		dbWrapper.initialize();
 		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
 			dbWrapper.getCheckListByInterventionId(window.localStorage.getItem("lastIntervention"), getCheckListByInterventionIdReturnFunction);
+		else
+			alert("There isn't defined any intervention");
+	},
+
+	getAllCheckLists: function () {
+		dbWrapper.initialize();
+		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
+			dbWrapper.getAllCheckLists(getAllCheckListsReturnFunction);
 		else
 			alert("There isn't defined any intervention");
 	},

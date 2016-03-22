@@ -18,7 +18,7 @@
 	<h1 class="a-title">Safety Checklist Audit Data</h1>
 
 	<table class="a-data">
-		<thead id="checkListItems">
+		<thead>
 			<tr>
 				<th>Date</th>
 				<th>Checklist</th>
@@ -30,6 +30,9 @@
 				<th>Safety lead</th>
 			</tr>
 		</thead>
+		<tbody id="allCheckListItems">
+
+		</tbody>
 	</table>
 
 	<div class="app-footer">
@@ -44,9 +47,7 @@
 		dbWrapper.initialize();
 		app.initialize();
 		setTimeout(function () {
-			app.getCheckListItems();
-			app.getPatientDetails();
-			app.getTeamDetails();
+			app.getAllCheckLists();
 		}, 500);
 	</script>
 
