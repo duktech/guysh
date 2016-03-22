@@ -102,9 +102,8 @@ function getAllCheckListsReturnFunction(transaction, result) {
 	alert('in callback', result);
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
-
-
-			var checkNames = result.rows[i].CheckName.split(',');
+			alert(result.rows[i].interventionType);
+			//var checkNames = result.rows[i].CheckName.split(',');
 			var checkDates = result.rows[i].CheckDate.split(',');
 			var checkStatus = result.rows[i].CheckStatus.split(',');
 
@@ -115,7 +114,6 @@ function getAllCheckListsReturnFunction(transaction, result) {
 				type = "Endoscopy";
 			else if (result.rows[i].interventionType == 4)
 				type = "WARD";
-
 
 			var final_stauts = "COMPLETE";
 			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
@@ -134,6 +132,7 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			$('#allCheckListItems').append(html);
 		}
 	}
+	return true;
 }
 
 function addInterventionReturnFunction() {
