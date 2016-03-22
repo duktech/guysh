@@ -99,10 +99,8 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 }
 
 function getAllCheckListsReturnFunction(transaction, result) {
-	alert('in callback', result);
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
-			alert(result.rows[i].interventionType);
 			//var checkNames = result.rows[i].CheckName.split(',');
 			var checkDates = result.rows[i].CheckDate.split(',');
 			var checkStatus = result.rows[i].CheckStatus.split(',');
@@ -311,9 +309,8 @@ var app = {
 
 	getAllCheckLists: function () {
 		dbWrapper.initialize();
-		alert('fct getAllCheckLists after init');
 		if (window.localStorage.getItem("lastIntervention") != null && window.localStorage.getItem("lastIntervention").length > 0)
-			dbWrapper.getAllCheckLists(getAllCheckListsReturnFunction);
+			dbWrapper.dbGetAllCheckLists(getAllCheckListsReturnFunction);
 		else
 			alert("There isn't defined any intervention");
 	},

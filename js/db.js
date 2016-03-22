@@ -169,7 +169,7 @@ var dbWrapper = {
 		},this.errorHandler,this.nullHandler);
 	},
 
-	getAllCheckLists: function(getAllCheckListsReturnFunction){
+	dbGetAllCheckLists: function(getAllCheckListsReturnFunction){
 		db.transaction(function(transaction) {
 			transaction.executeSql('SELECT Intervention.Id as interventionId, Intervention.RegisterDate as interventionDate, Intervention.Type as interventionType, Team.Name as TeamSafetyLead ,group_concat(DISTINCT CheckList.Id) as checks, group_concat(CheckList.name) as CheckName, group_concat(CheckList.SignDate) as CheckDate, group_concat(CheckList.Status) as CheckStatus  FROM Intervention INNER JOIN CheckList on Intervention.Id=CheckList.InterventionId LEFT JOIN Team on Intervention.id=Team.InterventionId AND Team.IsLeader = 1 GROUP BY Intervention.Id', [], getAllCheckListsReturnFunction,this.errorHandler);
 		},this.errorHandler,this.nullHandler);
