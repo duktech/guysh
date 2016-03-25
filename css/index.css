@@ -517,11 +517,9 @@ tr#checkListItems td{
 	text-align: left;
 	min-width: 170px;
 }
-#patientDetails.scan1c{
-	width: 120%;
-	left: -10%;
-	position: relative;
-}
 table#teamDetails{
 	text-align: left;
+}
+table#teamDetails .safety_team_lead, .team_members{
+	font-size: 18px;
 }

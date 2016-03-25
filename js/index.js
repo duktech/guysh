@@ -61,7 +61,7 @@ function getTeamByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			var teamMember = row.Name + ' ' + row.Surname + '(' +row.Role + ') ';
+			var teamMember = row.Name + '<br/>' + row.Surname + '<br/>' +row.Role + '<br/>';
 			if (row.IsLeader == '1'){
 				$('.safety_team_lead').append(teamMember);
 			}else{
@@ -79,7 +79,7 @@ function getTeamByInterventionIdReturnFunctionForSummary(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			var teamMember = row.Name + ' ' + row.Surname;
+			var teamMember = row.Name;
 			if (row.IsLeader == '1'){
 				$('.safety_team_lead').append(teamMember);
 			}else{
