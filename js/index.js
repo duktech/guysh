@@ -50,7 +50,7 @@ function getLastInterventionReturnFunction(transaction, result) {
 }
 
 function getPatientByInterventionIdReturnFunction(transaction, result) {
-	if (result != null && result.rows != null && result.rows.length > 0) {
+if (result != null && result.rows != null && result.rows.length > 0) {
 		var row = result.rows.item(0);
 		$('#patientDetails').append('<span class="green-title text-center"> ' + row.Name + ' ' + row.Surname + ' </span>' + '<table class="patienttable">' + '<tr>' + '<td class="lcol">' + 'DOB:' + '</td>' + '<td class="lcol">' + row.BirthDate.substr(0, 4) + " / " + row.BirthDate.substr(4, 2) + " / " + row.BirthDate.substr(6, 2) + '</td>' + '</tr>' + '<tr>' + '<td class="lcol">' + "Hospital No:" + '</td>' + '<td class="lcol">' + row.HospitalNr + '</td>' + '</tr>' + '<tr><td>Ward:</td><td>Richard Bright, Guy&#39;s Hospital</td></tr></table>');
 	}
@@ -61,16 +61,13 @@ function getTeamByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			var teamMember = row.Name + '<br/>' + row.Surname + '<br/>' +row.Role + '<br/>';
+			var teamMember = '';
 			if (row.IsLeader == '1'){
+				teamMember = '<strong>' + row.Name + '</strong> - ' + row.Surname + ' - ' +row.Role + '<br/>';
 				$('.safety_team_lead').append(teamMember);
 			}else{
-				if($('.team_members').text() ==""){
-					$('.team_members').append(teamMember);
-				}else{
-					$('.team_members').append(', ' +teamMember);
-				}
-
+				teamMember ='<strong>' +  row.Name + '</strong><br/>' + row.Surname + '<br/>' +row.Role + '<br/>';
+				$('.team_members').append(teamMember);
 			}
 		}
 	}

@@ -466,6 +466,7 @@ input[type=radio] {
 }
 .patienttable {
 	width: 100%;
+	text-align: left;
 }
 .green-title {
 	color: green;
