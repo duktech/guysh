@@ -103,11 +103,13 @@ function getAllCheckListsReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		alert('in if ');
 		for (var i = 0; i < result.rows.length; i++) {
-			alert('in for ');
+			alert('in for ' + result.rows[i].CheckName);
 			var checkNames = result.rows[i].CheckName.split(',');
+			alert(checkNames);
 			var checkDates = result.rows[i].CheckDate.split(',');
 			var checkStatus = result.rows[i].CheckStatus.split(',');
 
+			alert('after splits');
 			var type = "Surgery";
 			if (result.rows[i].interventionType == 2)
 				type = "Radiology";
