@@ -522,3 +522,9 @@ tr#checkListItems td{
 	left: -10%;
 	position: relative;
 }
+table#teamDetails{
+	width: 600px;
+	left: -100px;
+	position: relative;
+	text-align: left;
+}
