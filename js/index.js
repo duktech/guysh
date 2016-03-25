@@ -99,45 +99,37 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 }
 
 function getAllCheckListsReturnFunction(transaction, result) {
-	alert('inceput ' + result.rows.length);
 	if (result != null && result.rows != null && result.rows.length > 0) {
-		alert('in if ');
 		for (var i = 0; i < result.rows.length; i++) {
-			alert('in for ' + result.rows[i].CheckName);
-			var checkNames = result.rows[i].CheckName.split(',');
-			alert(checkNames);
-			var checkDates = result.rows[i].CheckDate.split(',');
-			var checkStatus = result.rows[i].CheckStatus.split(',');
+			var row = result.rows.item(i);
+			var checkNames = row.CheckName.split(',');
+			var checkDates = row.CheckDate.split(',');
+			var checkStatus = row.CheckStatus.split(',');
 
 			alert('after splits');
 			var type = "Surgery";
-			if (result.rows[i].interventionType == 2)
+			if (row.interventionType == 2)
 				type = "Radiology";
-			else if (result.rows[i].interventionType == 3)
+			else if (row.interventionType == 3)
 				type = "Endoscopy";
-			else if (result.rows[i].interventionType == 4)
+			else if (row.interventionType == 4)
 				type = "WARD";
-
-			alert('after if type');
 
 			var final_stauts = "COMPLETE";
 			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
 				final_stauts = "incomplete";
 			}
-			alert('after status');
 			var html = '<tr>';
-			html += '<td>'+result.rows[i].interventionDate+'</td>';
+			html += '<td>'+row.interventionDate+'</td>';
 			html += '<td>'+type+'</td>';
 			html += '<td>Guy&#39;s Hospital</td>';
 			html += '<td>'+checkDates[0]+'</td>';
 			html += '<td>'+checkDates[2]+'</td>';
 			html += '<td>'+checkDates[1]+'</td>';
 			html += '<td>'+final_stauts+'</td>';
-			html += '<td>'+result.rows[i].TeamSafetyLead+'</td>';
+			html += '<td>'+row.TeamSafetyLead+'</td>';
 			html += '</tr>';
-			alert('before append');
 			$('#allCheckListItems').append(html);
-			alert('after status');
 		}
 	}
 }
