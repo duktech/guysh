@@ -99,8 +99,11 @@ function getCheckListByInterventionIdReturnFunction(transaction, result) {
 }
 
 function getAllCheckListsReturnFunction(transaction, result) {
+	alert('inceput ' + result.rows.length);
 	if (result != null && result.rows != null && result.rows.length > 0) {
+		alert('in if ');
 		for (var i = 0; i < result.rows.length; i++) {
+			alert('in for ');
 			var checkNames = result.rows[i].CheckName.split(',');
 			var checkDates = result.rows[i].CheckDate.split(',');
 			var checkStatus = result.rows[i].CheckStatus.split(',');
@@ -113,10 +116,13 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			else if (result.rows[i].interventionType == 4)
 				type = "WARD";
 
+			alert('after if type');
+
 			var final_stauts = "COMPLETE";
 			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
 				final_stauts = "incomplete";
 			}
+			alert('after status');
 			var html = '<tr>';
 			html += '<td>'+result.rows[i].interventionDate+'</td>';
 			html += '<td>'+type+'</td>';
@@ -127,7 +133,9 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			html += '<td>'+final_stauts+'</td>';
 			html += '<td>'+result.rows[i].TeamSafetyLead+'</td>';
 			html += '</tr>';
+			alert('before append');
 			$('#allCheckListItems').append(html);
+			alert('after status');
 		}
 	}
 }
