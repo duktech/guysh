@@ -61,12 +61,10 @@ function getTeamByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			var teamMember = '';
+			var teamMember ='<strong>' +  row.Name + '</strong><br/>' + row.Surname + '<br/>' +row.Role + '<br/>';
 			if (row.IsLeader == '1'){
-				teamMember = '<strong>' + row.Name + '</strong> - ' + row.Surname + ' - ' +row.Role + '<br/>';
 				$('.safety_team_lead').append(teamMember);
 			}else{
-				teamMember ='<strong>' +  row.Name + '</strong><br/>' + row.Surname + '<br/>' +row.Role + '<br/>';
 				$('.team_members').append(teamMember);
 			}
 		}

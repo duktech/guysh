@@ -189,6 +189,8 @@ h1 {
 	font-size: 30px;
 	font-weight: 200;
 	text-transform: capitalize;
+	max-width: 400px;
+	margin: 0 auto;
 	margin-top: 50px;
 }
 
@@ -237,6 +239,7 @@ h1 {
 	max-width: 100%;
 	height: auto;
 	margin-top: 50px;
+	max-height: 300px;
 }
 
 .apr {
@@ -520,6 +523,12 @@ tr#checkListItems td{
 }
 table#teamDetails{
 	text-align: left;
+}
+table#teamDetails tr,table#teamDetails td{
+	vertical-align: top;
+}
+table#teamDetails tr td:first-child{
+	min-width: 300px;
 }
 table#teamDetails .safety_team_lead, .team_members{
 	font-size: 18px;
