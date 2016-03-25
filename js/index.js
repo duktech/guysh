@@ -61,10 +61,17 @@ function getTeamByInterventionIdReturnFunction(transaction, result) {
 	if (result != null && result.rows != null && result.rows.length > 0) {
 		for (var i = 0; i < result.rows.length; i++) {
 			var row = result.rows.item(i);
-			var teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' </li>';
-			if (row.IsLeader == '1')
-				teamMember = '<li>' + row.Name + ' ' + row.Surname + ' - ' + row.Role + ' - Team safety leader </li>';
-			$('#teamDetails').append(teamMember);
+			var teamMember = row.Name + ' ' + row.Surname + '(' +row.Role + ') ';
+			if (row.IsLeader == '1'){
+				$('.safety_team_lead').append(teamMember);
+			}else{
+				if($('.team_members').text() ==""){
+					$('.team_members').append(teamMember);
+				}else{
+					$('.team_members').append(', ' +teamMember);
+				}
+
+			}
 		}
 	}
 }
@@ -106,7 +113,6 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			var checkDates = row.CheckDate.split(',');
 			var checkStatus = row.CheckStatus.split(',');
 
-			alert('after splits');
 			var type = "Surgery";
 			if (row.interventionType == 2)
 				type = "Radiology";
@@ -119,13 +125,16 @@ function getAllCheckListsReturnFunction(transaction, result) {
 			if(checkStatus[0] != "COMPLETED" || checkStatus[1] != "COMPLETED" || checkStatus[2] != "COMPLETED" ){
 				final_stauts = "incomplete";
 			}
+			var sign_date = checkDates[0].split(' T ')[1].split(':');
+			var time_out_date = checkDates[2].split(' T ')[1].split(':');
+			var sign_out_date = checkDates[1].split(' T ')[1].split(':');
 			var html = '<tr>';
-			html += '<td>'+row.interventionDate+'</td>';
+			html += '<td>'+row.interventionDate.split(' T ')[0]+'</td>';
 			html += '<td>'+type+'</td>';
 			html += '<td>Guy&#39;s Hospital</td>';
-			html += '<td>'+checkDates[0]+'</td>';
-			html += '<td>'+checkDates[2]+'</td>';
-			html += '<td>'+checkDates[1]+'</td>';
+			html += '<td>' +sign_date[0] + ':' + sign_date[1] + '</td>';
+			html += '<td>' +time_out_date[0] + ':' + time_out_date[1] + '</td>';
+			html += '<td>' +sign_out_date[0] + ':' + sign_out_date[1] + '</td>';
 			html += '<td>'+final_stauts+'</td>';
 			html += '<td>'+row.TeamSafetyLead+'</td>';
 			html += '</tr>';

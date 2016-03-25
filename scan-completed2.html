@@ -25,11 +25,16 @@
 		</div>
 		<button class="scan-button" onclick="window.open('scan-completed.html', '_self', 'location=yes');">RESCAN</button>
 		<p><strong>Team</strong></p>
-		<ol class="list-members" id="teamDetails">
-			<!--<li>A. Popescu - NURSE</li>
-				<li>B. Ionescu - SURGEON</li>
-				<li>C. Dumitrescu - ANESTHETIST</li>-->
-		</ol>
+		<ul id="teamDetails">
+			<tr>
+				<td class="red_text">Team Safety Lead</td>
+				<td class="safety_team_lead"></td>
+			</tr>
+			<tr>
+				<td class="blue_text">Team Member</td>
+				<td class="team_members"></td>
+			</tr>
+		</ul>
 		<button id="scanTeamMember" class="choose-button">Scan Next Team Member</button>
 	</div>
 	<div class="app-footer">
