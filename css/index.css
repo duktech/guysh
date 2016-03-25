@@ -57,7 +57,7 @@ body {
 
 .app {
 	height: 100%;
-	width: 400px;
+	width: 100%;/*400px;*/
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -523,8 +523,5 @@ tr#checkListItems td{
 	position: relative;
 }
 table#teamDetails{
-	width: 600px;
-	left: -100px;
-	position: relative;
 	text-align: left;
 }
