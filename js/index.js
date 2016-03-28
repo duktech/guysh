@@ -423,7 +423,7 @@ var app = {
 	},
 
 	sendPdf: function (type) {
-
+		alert('send pdf start');
 		function onFileSystemSuccess(fileSystem) {
 			alert(fileSystem.name);
 			var successPdf = function (status) {
@@ -441,9 +441,10 @@ var app = {
 		}
 
 		function fail(evt) {
+			alert('fail'  + evt);
 			console.log(evt.target.error.code);
 		}
-		//alert("before file requests");
+		alert("before file requests");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
 		window.resolveLocalFileSystemURI("file:///test.pdf", onResolveSuccess, fail);
 
@@ -451,13 +452,14 @@ var app = {
 		var successPdf = function (status) {
 			alert('Message: ' + status);
 			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="~/Documents/test.pdf"', '_self', 'location=yes');;
-		}
+		};
 
 		var errorPdf = function (status) {
 			alert('Error: ' + status);
-		}
+		};
 		var page = location.href;
 
+		alert("before create");
 		window.html2pdf.create(
 			page,
 			"~/Documents/test.pdf", // on iOS,
