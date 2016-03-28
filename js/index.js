@@ -450,7 +450,7 @@ var app = {
 
 		var successPdf = function (status) {
 			alert('Message: ' + status);
-			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="test.pdf"', '_self', 'location=yes');;
+			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="~/Documents/test.pdf"', '_self', 'location=yes');;
 		}
 
 		var errorPdf = function (status) {
@@ -460,8 +460,8 @@ var app = {
 
 		window.html2pdf.create(
 			page,
-			//"~/Documents/test.pdf", // on iOS,
-			"test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
+			"~/Documents/test.pdf", // on iOS,
+			//"test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
 			successPdf,
 			errorPdf
 		);
