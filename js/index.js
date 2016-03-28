@@ -425,8 +425,9 @@ var app = {
 	sendPdf: function (type) {
 
 		var successPdf = function (status) {
-			alert('Message: ' + status);
-			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="~/Documents/test2.pdf"', '_self', 'location=yes');;
+			//alert('Message: ' + status);
+			//window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="~/Documents/test2.pdf"', '_self', 'location=yes');
+			window.open("~/Documents/test.pdf", '_self', 'location=yes');
 		};
 
 		var errorPdf = function (status) {
