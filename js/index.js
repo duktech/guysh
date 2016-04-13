@@ -423,24 +423,25 @@ var app = {
 	},
 
 	sendPdf: function (type) {
+		alert('sendPdf');
+		// Somewhere in your code
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
-		var successPdf = function (status) {
-			alert('Message: ' + status);
-			window.open('mailto:mugurel.rata@duk-tech.com?subject=report&body=see attachment&attachment="~/Documents/test2.pdf"', '_self', 'location=yes');
-		};
+		function gotFS(fileSystem) {
+			fileSystem.root.getFile("test.pdf", {create: true, exclusive: false}, gotFileEntry, fail);
+		}
 
-		var errorPdf = function (status) {
-			alert('Error: ' + status);
-		};
-		var page = location.href;
+		function gotFileEntry(fileEntry) {
+			fileEntry.createWriter(gotFileWriter, fail);
+		}
 
-		window.html2pdf.create(
-			page,
-			"~/Documents/test.pdf", // on iOS,
-			//"test.pdf", //on Android (will be stored in /mnt/sdcard/at.modalog.cordova.plugin.html2pdf/test.pdf)
-			successPdf,
-			errorPdf
-		);
+		function gotFileWriter(writer) {
+			var doc = new jsPDF();
+			doc.setFontSize(14);
+
+			doc.text(20, 20, 'Hello world!');
+			writer.write(doc.output());
+		}
 	},
 
 	encode: function () {
