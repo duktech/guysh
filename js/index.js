@@ -429,10 +429,11 @@ var app = {
 		doc.fromHTML($('.to-pdf').get(0), 15, 15);
 		//doc.text(20, 20, 'Hello world!');
 		var checklist_name = $('.checkList_name').text();
-		
+		var checklist_name_pdf = checklist_name.replace(/\s+/g, '-');
+
 		var uristring = doc.output('datauristring');
 		var uristringparts = uristring.split(',');
-		uristringparts[0] = "base64:" + escape(checklist_name + ' - checklist.pdf') + "//";
+		uristringparts[0] = "base64:" + escape(checklist_name_pdf + ' - checklist.pdf') + "//";
 
 		var moddeduristring =  uristringparts.join("");
 
