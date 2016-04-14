@@ -436,7 +436,7 @@ var app = {
 		uristringparts[0] = "base64:" + escape('sample.pdf') + "//";
 
 		var moddeduristring =  uristringparts.join("");
-		console.log(uristring);
+
 
 		cordova.plugins.email.open({
 			to:      'flondorel@gmail.com',
@@ -444,33 +444,33 @@ var app = {
 			subject: 'Pdf Test',
 			body:    'Hope this mail got a pdf attachment.',
 			isHTML: false,
-			attachments: [uristring]
+			attachments: [moddeduristring]
 		});
-		return;
 
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-    function fail(evt){
-			alert('fail');
-			alert(evt.target.error.code);
-		}
-		function gotFS(fileSystem) {
-			alert('gotfs');
-			fileSystem.root.getFile("test.pdf", {create: true, exclusive: false}, gotFileEntry, fail);
-		}
 
-		function gotFileEntry(fileEntry) {
-			fileEntry.createWriter(gotFileWriter, fail);
-		}
-
-		function gotFileWriter(writer) {
-			alert('write doc start');
-			var doc = new jsPDF();
-			doc.setFontSize(14);
-
-			doc.text(20, 20, 'Hello world!');
-			writer.write(doc.output());
-
-		}
+		//not used, save pdf to phone
+		//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    //function fail(evt){
+		//	alert('fail');
+		//	alert(evt.target.error.code);
+		//}
+		//function gotFS(fileSystem) {
+		//	alert('gotfs');
+		//	fileSystem.root.getFile("test.pdf", {create: true, exclusive: false}, gotFileEntry, fail);
+		//}
+    //
+		//function gotFileEntry(fileEntry) {
+		//	fileEntry.createWriter(gotFileWriter, fail);
+		//}
+    //
+		//function gotFileWriter(writer) {
+		//	alert('write doc start');
+		//	var doc = new jsPDF();
+		//	doc.setFontSize(14);
+    //
+		//	doc.text(20, 20, 'Hello world!');
+		//	writer.write(doc.output());
+		//}
 	},
 
 	encode: function () {
