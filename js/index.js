@@ -44,7 +44,7 @@ function getLastInterventionReturnFunction(transaction, result) {
 		}
 
 		if($('#interventionDetailsInPage').length > 0){
-			$('#interventionDetailsInPage').append('<tr> <td>Procedure date:</td> <td>'+row.RegisterDate+'</td> </tr> <tr> <td>Site:</td> <td>Guy&#39;s Hospital</td> </tr> <tr> <td>Checklist:</td> <td>WHO Patient Safety</td> </tr>');
+			$('#interventionDetailsInPage').append('<tr> <td>Procedure date:</td> <td>'+row.RegisterDate+'</td> </tr> <tr> <td>Site:</td> <td>Guy&#39;s Hospital</td> </tr> <tr> <td>Checklist:</td> <td class="checkList_name">WHO Patient Safety</td> </tr>');
 		}
 	}
 }
@@ -428,19 +428,20 @@ var app = {
 
 		doc.fromHTML($('.to-pdf').get(0), 15, 15);
 		//doc.text(20, 20, 'Hello world!');
-
+		var checklist_name = $('.checkList_name').text();
+		
 		var uristring = doc.output('datauristring');
 		var uristringparts = uristring.split(',');
-		uristringparts[0] = "base64:" + escape('checklist.pdf') + "//";
+		uristringparts[0] = "base64:" + escape(checklist_name + ' - checklist.pdf') + "//";
 
 		var moddeduristring =  uristringparts.join("");
 
 
 		cordova.plugins.email.open({
-			to:      'flondorel@gmail.com',
-			cc:      'mugurel.rata@duk-tech.com',
-			subject: 'Pdf Test',
-			body:    'Who checklist',
+			to:      '',
+			cc:      '',
+			subject: checklist_name + ' - Checklist',
+			body:    checklist_name + ' - Checklist Pdf',
 			isHTML: false,
 			attachments: [moddeduristring]
 		});
