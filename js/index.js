@@ -429,7 +429,8 @@ var app = {
 		var doc = new jsPDF();
 		doc.setFontSize(14);
 
-		doc.text(20, 20, 'Hello world!');
+		doc.fromHTML($('.to-pdf').get(0), 15, 15);
+		//doc.text(20, 20, 'Hello world!');
 
 		var uristring = doc.output('datauristring');
 		var uristringparts = uristring.split(',');
