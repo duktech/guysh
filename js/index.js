@@ -448,12 +448,19 @@ var app = {
 			doc.text(20, 20, 'Hello world!');
 			writer.write(doc.output());
 
+			var uristring = doc.output('datauristring');
+			var uristringparts = uristring.split(',');
+			uristringparts[0] = "base64:" + escape('sample.pdf') + "//";
+
+			var moddeduristring =  uristringparts.join("");
+
 			cordova.plugins.email.open({
-				to:      'max@mustermann.de',
-				cc:      'erika@mustermann.de',
-				bcc:     ['john@doe.com', 'jane@doe.com'],
-				subject: 'Greetings',
-				body:    'How are you? Nice greetings from Leipzig'
+				to:      'flondorel@gmail.com',
+				cc:      'mugurel.rata@duk-tech.com',
+				subject: 'Pdf Test',
+				body:    'Hope this mail got a pdf attachment.',
+				isHTML: false,
+				attachments: [moddeduristring]
 			});
 
 		}
