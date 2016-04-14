@@ -427,7 +427,10 @@ var app = {
 		// Somewhere in your code
 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-
+    function fail(evt){
+			alert('fail');
+			alert(evt.target.error.code);
+		}
 		function gotFS(fileSystem) {
 			alert('gotfs');
 			alert(fileSystem.name);
