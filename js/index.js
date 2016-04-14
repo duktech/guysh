@@ -423,9 +423,6 @@ var app = {
 	},
 
 	sendPdf: function (type) {
-		alert('sendPdf');
-		// Somewhere in your code
-
 		var doc = new jsPDF();
 		doc.setFontSize(14);
 
