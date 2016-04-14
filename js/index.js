@@ -426,6 +426,28 @@ var app = {
 		alert('sendPdf');
 		// Somewhere in your code
 
+		var doc = new jsPDF();
+		doc.setFontSize(14);
+
+		doc.text(20, 20, 'Hello world!');
+
+		var uristring = doc.output('datauristring');
+		var uristringparts = uristring.split(',');
+		uristringparts[0] = "base64:" + escape('sample.pdf') + "//";
+
+		var moddeduristring =  uristringparts.join("");
+		console.log(uristring);
+
+		cordova.plugins.email.open({
+			to:      'flondorel@gmail.com',
+			cc:      'mugurel.rata@duk-tech.com',
+			subject: 'Pdf Test',
+			body:    'Hope this mail got a pdf attachment.',
+			isHTML: false,
+			attachments: [uristring]
+		});
+		return;
+
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     function fail(evt){
 			alert('fail');
@@ -447,21 +469,6 @@ var app = {
 
 			doc.text(20, 20, 'Hello world!');
 			writer.write(doc.output());
-
-			var uristring = doc.output('datauristring');
-			var uristringparts = uristring.split(',');
-			uristringparts[0] = "base64:" + escape('sample.pdf') + "//";
-
-			var moddeduristring =  uristringparts.join("");
-
-			cordova.plugins.email.open({
-				to:      'flondorel@gmail.com',
-				cc:      'mugurel.rata@duk-tech.com',
-				subject: 'Pdf Test',
-				body:    'Hope this mail got a pdf attachment.',
-				isHTML: false,
-				attachments: [moddeduristring]
-			});
 
 		}
 	},
