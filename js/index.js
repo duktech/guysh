@@ -433,23 +433,29 @@ var app = {
 		}
 		function gotFS(fileSystem) {
 			alert('gotfs');
-			alert(fileSystem.name);
-			alert(fileSystem.root.name);
 			fileSystem.root.getFile("test.pdf", {create: true, exclusive: false}, gotFileEntry, fail);
 		}
 
 		function gotFileEntry(fileEntry) {
-			alert('gotfileentry')
 			fileEntry.createWriter(gotFileWriter, fail);
 		}
 
 		function gotFileWriter(writer) {
-			alert(gotFileWriter);
+			alert('write doc start');
 			var doc = new jsPDF();
 			doc.setFontSize(14);
 
 			doc.text(20, 20, 'Hello world!');
 			writer.write(doc.output());
+
+			cordova.plugins.email.open({
+				to:      'max@mustermann.de',
+				cc:      'erika@mustermann.de',
+				bcc:     ['john@doe.com', 'jane@doe.com'],
+				subject: 'Greetings',
+				body:    'How are you? Nice greetings from Leipzig'
+			});
+
 		}
 	},
 

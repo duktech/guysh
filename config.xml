@@ -16,6 +16,7 @@
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 	<gap:plugin name="de.appplant.cordova.plugin.printer" />
     <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="cordova-plugin-email-composer" version="0.8.3" source="npm" />
 	<!--<gap:plugin name="cordova-plugin-email-composer" source="npm" />-->
 
     <feature name="http://api.phonegap.com/1.0/device" />
