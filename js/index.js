@@ -434,7 +434,7 @@ var app = {
 
 		var uristring = doc.output('datauristring');
 		var uristringparts = uristring.split(',');
-		uristringparts[0] = "base64:" + escape('sample.pdf') + "//";
+		uristringparts[0] = "base64:" + escape('checklist.pdf') + "//";
 
 		var moddeduristring =  uristringparts.join("");
 
@@ -443,7 +443,7 @@ var app = {
 			to:      'flondorel@gmail.com',
 			cc:      'mugurel.rata@duk-tech.com',
 			subject: 'Pdf Test',
-			body:    'Hope this mail got a pdf attachment.',
+			body:    'Who checklist',
 			isHTML: false,
 			attachments: [moddeduristring]
 		});
