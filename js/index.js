@@ -425,17 +425,23 @@ var app = {
 	sendPdf: function (type) {
 		alert('sendPdf');
 		// Somewhere in your code
+
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
 		function gotFS(fileSystem) {
+			alert('gotfs');
+			alert(fileSystem.name);
+			alert(fileSystem.root.name);
 			fileSystem.root.getFile("test.pdf", {create: true, exclusive: false}, gotFileEntry, fail);
 		}
 
 		function gotFileEntry(fileEntry) {
+			alert('gotfileentry')
 			fileEntry.createWriter(gotFileWriter, fail);
 		}
 
 		function gotFileWriter(writer) {
+			alert(gotFileWriter);
 			var doc = new jsPDF();
 			doc.setFontSize(14);
 
